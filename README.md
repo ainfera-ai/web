@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/brand/ainfera-mark-ice.svg" alt="Ainfera" width="96" />
+</p>
+
 # web
 
 Public website for **Ainfera** — the Neptune model lab site for [ainfera.ai](https://ainfera.ai).
@@ -24,7 +28,8 @@ This is **not** a routing marketplace product site and not a general SaaS pitch.
 ```text
 web/
 ├── README.md
-├── public/          # Static assets
+├── public/
+│   └── brand/ainfera-mark-ice.svg
 ├── src/             # Site source (framework TBD / in progress)
 └── docs/            # Content briefs, IA notes
 ```
