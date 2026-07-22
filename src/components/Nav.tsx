@@ -237,14 +237,7 @@ export default function Nav({
             alt="Hugging Face"
             style={{ width: 15, height: 15, display: "block" }}
           />
-          <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ color: "#a9c7ff" }}>2.4K</span>
-            <span style={{ color: "#98a3bd" }}>FOLLOWERS</span>
-          </span>
-          <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ color: "#a9c7ff" }}>318</span>
-            <span style={{ color: "#98a3bd" }}>LIKES</span>
-          </span>
+          <span style={{ color: "#eaf1ff" }}>FOLLOW ON HF</span>
           <span style={{ color: "#a9c7ff" }}>↗</span>
         </a>
       </div>
