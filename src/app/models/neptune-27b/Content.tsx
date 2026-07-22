@@ -212,7 +212,7 @@ export default function Content() {
             >
               <a
                 className="btn-cta"
-                href="https://huggingface.co/ainfera"
+                href="https://huggingface.co/ainfera-ai"
                 target="_blank"
                 rel="noreferrer"
                 style={{

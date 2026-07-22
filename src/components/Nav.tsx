@@ -64,7 +64,7 @@ export default function Nav({
       {banner && (
         <a
           className="nav-banner"
-          href="https://huggingface.co/ainfera"
+          href="https://huggingface.co/ainfera-ai"
           target="_blank"
           rel="noreferrer"
           style={{
@@ -219,7 +219,7 @@ export default function Nav({
         </nav>
         <a
           className="btn-ghost"
-          href="https://huggingface.co/ainfera"
+          href="https://huggingface.co/ainfera-ai"
           target="_blank"
           rel="noreferrer"
           style={{

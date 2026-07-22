@@ -503,7 +503,7 @@ export default function DocsPage() {
                   </span>
                 </h2>
                 <a
-                  href="https://huggingface.co/ainfera"
+                  href="https://huggingface.co/ainfera-ai"
                   target="_blank"
                   rel="noreferrer"
                   style={{ font: "400 12px 'IBM Plex Mono', monospace", letterSpacing: "0.1em" }}
@@ -511,7 +511,7 @@ export default function DocsPage() {
                   MODEL CARD &amp; WEIGHTS&nbsp;↗
                 </a>
                 <a
-                  href="https://huggingface.co/ainfera"
+                  href="https://huggingface.co/ainfera-ai"
                   target="_blank"
                   rel="noreferrer"
                   style={{ font: "400 12px 'IBM Plex Mono', monospace", letterSpacing: "0.1em" }}

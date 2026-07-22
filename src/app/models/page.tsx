@@ -238,7 +238,7 @@ const MODELS: Model[] = [
     closed: true,
     certNote: true,
     ctaLabel: "FOLLOW THE TRAINING RUN ↗",
-    ctaHref: "https://huggingface.co/ainfera",
+    ctaHref: "https://huggingface.co/ainfera-ai",
     ctaExternal: true,
     vizT: "translate(160,76) scale(1)",
     vizTag: "27B · DENSE · GRPO NOW",
@@ -544,7 +544,7 @@ export default function ModelsPage() {
                   <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 6 }}>
                     <a
                       className="btn-cta"
-                      href="https://huggingface.co/ainfera"
+                      href="https://huggingface.co/ainfera-ai"
                       target="_blank"
                       rel="noreferrer"
                       style={{
@@ -557,7 +557,7 @@ export default function ModelsPage() {
                     </a>
                     <a
                       className="btn-ghost"
-                      href="https://huggingface.co/ainfera"
+                      href="https://huggingface.co/ainfera-ai"
                       target="_blank"
                       rel="noreferrer"
                       style={{

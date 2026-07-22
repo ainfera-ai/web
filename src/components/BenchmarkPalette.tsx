@@ -159,7 +159,7 @@ export default function BenchmarkPalette() {
           ))}
         </div>
         <a
-          href="https://huggingface.co/ainfera"
+          href="https://huggingface.co/ainfera-ai"
           target="_blank"
           rel="noreferrer"
           style={{

@@ -340,7 +340,7 @@ export default function ContactPage() {
                 <span style={sideLabel}>ELSEWHERE</span>
                 <a
                   className="lnk-body"
-                  href="https://huggingface.co/ainfera"
+                  href="https://huggingface.co/ainfera-ai"
                   target="_blank"
                   rel="noreferrer"
                   style={{ font: "400 13px 'Poppins', sans-serif" }}
@@ -349,7 +349,7 @@ export default function ContactPage() {
                 </a>
                 <a
                   className="lnk-body"
-                  href="https://x.com/ainfera"
+                  href="https://x.com/ainfera_ai"
                   target="_blank"
                   rel="noreferrer"
                   style={{ font: "400 13px 'Poppins', sans-serif" }}

@@ -753,7 +753,7 @@ export default function Content() {
             </Link>
             <a
               className="cs-x"
-              href="https://x.com/ainfera"
+              href="https://x.com/ainfera_ai"
               target="_blank"
               rel="noreferrer"
               aria-label="Ainfera on X"

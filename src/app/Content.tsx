@@ -288,7 +288,7 @@ export default function HomeContent() {
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
                 <a
                   className="btn-cta btn-cta--lift"
-                  href="https://huggingface.co/ainfera"
+                  href="https://huggingface.co/ainfera-ai"
                   target="_blank"
                   rel="noreferrer"
                   style={{ font: "500 11.5px 'IBM Plex Mono', monospace", letterSpacing: "0.1em", padding: "16px 26px" }}
@@ -297,7 +297,7 @@ export default function HomeContent() {
                 </a>
                 <a
                   className="btn-ghost btn-ghost--lift"
-                  href="https://huggingface.co/ainfera"
+                  href="https://huggingface.co/ainfera-ai"
                   target="_blank"
                   rel="noreferrer"
                   style={{ font: "400 11.5px 'IBM Plex Mono', monospace", letterSpacing: "0.1em", padding: "15px 24px" }}
@@ -569,10 +569,10 @@ export default function HomeContent() {
             ))}
           </div>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap", padding: "36px clamp(24px, 3.5vw, 48px) clamp(48px, 7vh, 72px)", borderTop: "1px dashed rgba(169,199,255,0.12)" }}>
-            <a className="btn-cta" href="https://huggingface.co/ainfera" target="_blank" rel="noreferrer" style={{ font: "500 11.5px 'IBM Plex Mono', monospace", letterSpacing: "0.1em", padding: "15px 24px" }}>
+            <a className="btn-cta" href="https://huggingface.co/ainfera-ai" target="_blank" rel="noreferrer" style={{ font: "500 11.5px 'IBM Plex Mono', monospace", letterSpacing: "0.1em", padding: "15px 24px" }}>
               FOLLOW ON HUGGING FACE&nbsp;↗
             </a>
-            <a className="btn-ghost" href="https://huggingface.co/ainfera" target="_blank" rel="noreferrer" style={{ font: "400 11.5px 'IBM Plex Mono', monospace", letterSpacing: "0.1em", padding: "14px 22px" }}>
+            <a className="btn-ghost" href="https://huggingface.co/ainfera-ai" target="_blank" rel="noreferrer" style={{ font: "400 11.5px 'IBM Plex Mono', monospace", letterSpacing: "0.1em", padding: "14px 22px" }}>
               MODEL CARD · AT RELEASE&nbsp;↗
             </a>
           </div>

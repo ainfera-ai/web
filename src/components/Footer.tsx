@@ -182,7 +182,7 @@ export default function Footer() {
             <div style={{ display: "flex", gap: 18, alignItems: "center", marginTop: -14 }}>
               <a
                 className="icon-lnk"
-                href="https://github.com/ainfera"
+                href="https://github.com/ainfera-ai"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
@@ -196,7 +196,7 @@ export default function Footer() {
               </a>
               <a
                 className="icon-lnk"
-                href="https://huggingface.co/ainfera"
+                href="https://huggingface.co/ainfera-ai"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Hugging Face"
@@ -210,7 +210,7 @@ export default function Footer() {
               </a>
               <a
                 className="icon-lnk"
-                href="https://x.com/ainfera"
+                href="https://x.com/ainfera_ai"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="X"
