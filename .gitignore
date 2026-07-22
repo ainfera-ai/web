@@ -25,3 +25,4 @@ coverage/
 # Local agent/editor hook configs (machine-specific paths)
 .codex/
 .cursor/
+.vercel
