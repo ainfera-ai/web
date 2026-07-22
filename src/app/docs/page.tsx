@@ -24,7 +24,7 @@ const codeBlock: React.CSSProperties = {
 };
 
 const h2Style: React.CSSProperties = {
-  font: "400 20px 'Poppins', sans-serif",
+  font: "600 20px 'Poppins', sans-serif",
   letterSpacing: "-0.015em",
   color: "#eaf1ff",
   margin: 0,
@@ -42,9 +42,62 @@ const monoInline: React.CSSProperties = {
   fontSize: 12.5,
 };
 
+const barBase: React.CSSProperties = {
+  backgroundImage: "linear-gradient(#a9c7ff, #a9c7ff)",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "left center",
+  backgroundSize: "100% 100%",
+  color: "#060b16",
+  padding: "0 0.24em 0.1em 0.19em",
+};
+
+// Ambient "data rain" backdrop behind the request-flow diagram.
+const rain: { c: string; o: number; t: string }[] = [
+  { c: "#2e4370", o: 1, t: "—   [+ /[     /T+   '' '   '  #  +— —+ —/ '#        T[ + —     '#TT'      '##  —+[ '    / +            /[ #— + +'  —+     '        " },
+  { c: "#223052", o: 0.85, t: "—   ++·#·    —  / '  '  # ' [+###+—      +/           /—  T'[  ' [/ [+       # /  ' —      T· # T[#  T #  ·   #  #'·—  T   ''     / " },
+  { c: "rgba(79,206,141,0.34)", o: 0.9, t: "[   ·  T[T—[[— / [  '· /     ·    T[[+T[       [ '[  ·   [   +·[   /  —[    '    + '   ' +—— [ /   ·    [ #   T[·/—— #+#   '   T+ [ " },
+  { c: "#2e4370", o: 1, t: " / ·#—   'T  TTT  · +T  ' /         #—  · # — + [ ' [#/ [T/     'T[TT      ' +  /  +#  '## · — —    · '#/   · # /     ·/' [ /  '  ·/" },
+  { c: "#223052", o: 0.85, t: "  T—[     +/ '   //  '+—   #T ·   ·    T+T   / T[ —     '  +  +' +    T—' '##' #T—— [· [ #[   '    ·+ —['/#   · —  #    [+—[+·     '" },
+  { c: "#223052", o: 0.85, t: "  /  ''    ·  /+/[· # ·  '  T   [+T[·  [— '#   ·            [     —    #  #TT'  /'T— '  ' · '/T   # [ +[  '—    T[    [+     ·/ ·   " },
+  { c: "#2e4370", o: 1, t: " +/   —#  #  /    · / '   [#T  '· ' /  —[#''      / /    ·  — [—  T 'T  /  '[T  ##   +  '/—[ ·      — ·         [ — — + — '  —  # # " },
+  { c: "rgba(79,206,141,0.34)", o: 0.9, t: "+   — T[ ++##·    [ '  #  —      'T     [  ·T     /   T#        [   —T —T +     ' /[[    ·  #   — /—T T/T —T #  #/  —/ —+/# # /+ [T " },
+  { c: "#223052", o: 0.85, t: "T + +      —       +   ·   + + / ''  / —·   '/  ##'    #     + /——    +  ' +     · · [ [  #/—+·/  ·[### ·  —  [[ #   [#   # /+  —  '" },
+  { c: "#2e4370", o: 1, t: "     T —·/  +— T + T/'  + + /     # [  T+ '  — ##[+ /—   +—  'T ·—  '#[T#  T      +  ·  ##    +/    —    ''·   +'        +·   ·    '" },
+  { c: "#223052", o: 0.85, t: " '/          —  T   [/ T  +—      —['/·+     '   — —   '·—[# ——      ··/ /· /  #   —    /  / —   [/—'/ [ — —   [ + · —# [      '  T " },
+  { c: "#223052", o: 0.85, t: "   /+/  T    ['  '   —/#—  '  — +   —# [# ' T[ + · '/#/ ++# / +  + [· /  # +[     + T·  —+ ·    [   +· +#  #—    'T  ·+ [+ —'#  ·  #" },
+  { c: "rgba(79,206,141,0.34)", o: 0.9, t: " 'T—·+    #  [  +           #+ +   T +  ·'+·     ·    — [' ' #  — T   #··'— ' '/ # [     T# +'   #       ·  +  +   — T ···    [T+   " },
+  { c: "#223052", o: 0.85, t: "  /+  /[  ++ #   [—[ ——+/ +  '+/    +        '   T · ·· [   [ ·      / '— '[T+T    T# /     ' # T'  #    ·/  [ T T  · —  + —/   +#— " },
+  { c: "#223052", o: 0.85, t: "T +[     ' '/ ·+#· T/— +# '#       — ·  · · [  +  + T · /[/#     [/·/    [+/    +[ /·    [++' +  ·/ T T   [#+   + —    [   ·— T ——  " },
+  { c: "#2e4370", o: 1, t: "# T — ' [[ T#+·#   /            [  —  '+  ·+ — —· / —#     +T— ·  /#[' ·  [ [+/+·— T·      · '' ['/ ·   · — ·[ —/·   + ·/   —#T# '  " },
+  { c: "#223052", o: 0.85, t: " '           — /  ·   ' [       / '            ·/  ·  #  T/ #[ /' [/ /·      T—   T   [/ '+/         / T+   T     T/—   [ /   / —   " },
+  { c: "rgba(79,206,141,0.34)", o: 0.9, t: "/   [   '[#  ·  [   '+  [ — [+   #  +    +    T ['·· [   #      [' —  ''[+' —  ·  +           [  — ' —++[     ' '#'T  /· —     —T   " },
+  { c: "#2e4370", o: 1, t: "/  #       — #    —T      ++T—   T T ' ·   ·+ —    —  #    #  T #T·      +· +—T T/ —/· /[· '/— 'T  # [  + +  ·   T     [—# + T    — " },
+  { c: "#223052", o: 0.85, t: "    —     T    —   /[//## '  +[   #/  +[—[ [ +     + ——    —    ++T — T  / '  T      +     +·  +  ·[· —  T / +/   T—+TT  '  ·    [/ " },
+  { c: "#223052", o: 0.85, t: " +    [ — '#+  TT  — #   ·[  [+ +   —    [      T+ ·  [      ——·+  # ['        [[ T # / T # T  '    # / —— T[#   + T— ·    '—+//T   " },
+  { c: "#2e4370", o: 1, t: "     ' #+  /+—[— /#T'[  — +[T/T ·[T·    /  #  '·· /        ·T + # ·  —   — T—       [       · · ' ·  # '/ '      #  ·    / · —   + T" },
+  { c: "rgba(79,206,141,0.34)", o: 0.9, t: " +/ —'T     ++[#— T· T + / T [/—#+     [ TTT    #  ''     #  ' [—#    '/ '—/'+ ·    ··         [      —  [    + T —[  [ #      — — [" },
+  { c: "#223052", o: 0.85, t: "[T '  T'  ' #  —[ [[/'/  '     + T [ /       +   [  ·  #++ +#   —·T '   /' +    — / T/·T  # '           [  + [ #—[—     #+ ''    /·+" },
+  { c: "#2e4370", o: 1, t: " ·/'      [ /'· #  'T      — T +[—  + '/   '     [/  ' —+· T   /  [    '  T'·[  T             /·T    ——·  ·   [   /  [·   [· [[  — '" },
+  { c: "#223052", o: 0.85, t: " '+—[+# [T '/—'T   T #     + [  / ' · [+T—TT   ·  / '+ ['T·—   ·    — [—  [##T——   ·/ —T/##—   T[  ['#     /#      // +  // +'+T + —" },
+];
+
+const pageStyle = `
+@keyframes barIn { from { background-size: 0% 100%; color: #eaf1ff; } to { background-size: 100% 100%; color: #060b16; } }
+@keyframes floatY { from { transform: translateY(3px); } to { transform: translateY(-5px); } }
+@keyframes nodePing { 0% { transform: scale(0.96); opacity: 0; } 3% { opacity: 0.7; } 32% { transform: scale(1.65); opacity: 0; } 100% { transform: scale(1.65); opacity: 0; } }
+@keyframes pulseTravel { 0% { offset-distance: 0%; opacity: 0; } 6% { opacity: 1; } 46% { offset-distance: 100%; opacity: 1; } 52% { offset-distance: 100%; opacity: 0; } 100% { offset-distance: 100%; opacity: 0; } }
+[data-reveal] [data-dc-ch] { animation-play-state: paused; }
+[data-reveal="on"] [data-dc-ch] { animation-play-state: running; }
+@media (prefers-reduced-motion: reduce) {
+  [data-dc-docs] * { animation: none !important; }
+  [data-dc-docs] [data-dc-ch] { background-size: 100% 100% !important; color: #060b16 !important; }
+}
+`;
+
 export default function DocsPage() {
   return (
-    <div style={{ background: "#060b16", fontFamily: "'Poppins', sans-serif" }}>
+    <div data-dc-docs="" style={{ background: "#060b16", fontFamily: "'Poppins', sans-serif" }}>
+      <style dangerouslySetInnerHTML={{ __html: pageStyle }} />
       <Nav active="none" />
 
       <div style={{ ...railStyle, position: "relative" }}>
@@ -92,13 +145,21 @@ export default function DocsPage() {
           </span>
           <h1
             style={{
-              font: "300 clamp(36px, 4.4vw, 62px)/1.12 'Poppins', sans-serif",
-              letterSpacing: "-0.025em",
+              font: "600 clamp(36px, 4.4vw, 62px)/1.12 'Poppins', sans-serif",
+              letterSpacing: "-0.03em",
               color: "#eaf1ff",
               margin: 0,
             }}
           >
-            Run Neptune.
+            Run{" "}
+            <span
+              style={{
+                ...barBase,
+                animation: "barIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s both",
+              }}
+            >
+              Neptune.
+            </span>
           </h1>
           <p
             style={{
@@ -111,6 +172,186 @@ export default function DocsPage() {
             Neptune-1.0-27B-Agent is a standard open-weights release — pull it from Hugging Face
             and serve it with the stack you already run.
           </p>
+
+          <div style={{ position: "relative", width: "min(760px, 100%)", marginTop: 10 }}>
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+                pointerEvents: "none",
+                userSelect: "none",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 74% 78% at 50% 50%, black 50%, transparent 92%)",
+                maskImage:
+                  "radial-gradient(ellipse 74% 78% at 50% 50%, black 50%, transparent 92%)",
+              }}
+            >
+              {rain.map((r, i) => (
+                <div
+                  key={i}
+                  style={{
+                    font: "400 12px/17px 'IBM Plex Mono', monospace",
+                    letterSpacing: "5px",
+                    whiteSpace: "pre",
+                    color: r.c,
+                    opacity: r.o,
+                  }}
+                >
+                  {r.t}
+                </div>
+              ))}
+            </div>
+
+            <svg
+              viewBox="0 0 760 150"
+              style={{
+                display: "block",
+                width: "100%",
+                height: "auto",
+                overflow: "visible",
+                position: "relative",
+              }}
+              aria-label="Your agent calls Neptune and receives a Hermes-native tool call"
+            >
+              <defs>
+                <radialGradient id="haloDocs" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="rgba(169,199,255,0.22)" />
+                  <stop offset="100%" stopColor="rgba(169,199,255,0)" />
+                </radialGradient>
+              </defs>
+              <ellipse cx="380" cy="76" rx="115" ry="48" fill="url(#haloDocs)" />
+              <path
+                d="M 130 74 L 326 74"
+                fill="none"
+                stroke="#4c74ff"
+                strokeWidth="1"
+                strokeDasharray="4 4"
+                opacity="0.75"
+                style={{ animation: "dashFlow 2.2s linear infinite" }}
+              />
+              <path
+                d="M 434 74 L 584 74"
+                fill="none"
+                stroke="#4c74ff"
+                strokeWidth="1"
+                strokeDasharray="4 4"
+                opacity="0.75"
+                style={{ animation: "dashFlow 2.2s linear infinite" }}
+              />
+              <g transform="translate(94,74) scale(0.85)" stroke="#a9c7ff" strokeWidth="1" opacity="0.85">
+                <g style={{ animation: "floatY 8s ease-in-out infinite alternate" }}>
+                  <path d="M 0 -26 L 26 -13 L 0 0 L -26 -13 Z" fill="#141c2e" />
+                  <path d="M -26 -13 L -26 15 L 0 28 L 0 0 Z" fill="#0b1220" />
+                  <path d="M 0 0 L 0 28 L 26 15 L 26 -13 Z" fill="#060b16" />
+                </g>
+              </g>
+              <text
+                x="94"
+                y="130"
+                textAnchor="middle"
+                fontFamily="IBM Plex Mono, monospace"
+                fontSize="9"
+                letterSpacing="1.5"
+                fill="#98a3bd"
+              >
+                YOUR AGENT
+              </text>
+              <g>
+                <ellipse cx="380" cy="86" rx="46" ry="14" fill="#060b16" stroke="#1b2740" />
+                <ellipse
+                  cx="380"
+                  cy="74"
+                  rx="46"
+                  ry="14"
+                  fill="rgba(37,71,244,0.16)"
+                  stroke="#4c74ff"
+                  opacity="0.85"
+                />
+                <ellipse cx="380" cy="62" rx="46" ry="14" fill="#0b1220" stroke="#a9c7ff" strokeWidth="1.5" />
+                <circle
+                  cx="380"
+                  cy="62"
+                  r="10"
+                  fill="none"
+                  stroke="#a9c7ff"
+                  style={{
+                    transformBox: "fill-box",
+                    transformOrigin: "center",
+                    animation: "nodePing 4.5s ease-out 1.4s infinite both",
+                  }}
+                />
+              </g>
+              <text
+                x="380"
+                y="130"
+                textAnchor="middle"
+                fontFamily="IBM Plex Mono, monospace"
+                fontSize="9"
+                letterSpacing="1.5"
+                fill="#98a3bd"
+              >
+                NEPTUNE-27B
+              </text>
+              <rect x="592" y="60" width="120" height="28" fill="#060b16" stroke="#a9c7ff" />
+              <text
+                x="652"
+                y="78"
+                textAnchor="middle"
+                fontFamily="IBM Plex Mono, monospace"
+                fontSize="9.5"
+                letterSpacing="1"
+                fill="#a9c7ff"
+              >
+                {"<tool_call>"}
+              </text>
+              <text
+                x="652"
+                y="130"
+                textAnchor="middle"
+                fontFamily="IBM Plex Mono, monospace"
+                fontSize="9"
+                letterSpacing="1.5"
+                fill="#98a3bd"
+              >
+                HERMES JSON
+              </text>
+              <path
+                d="M 250 26 L 256 32 L 250 38 L 244 32 Z"
+                fill="none"
+                stroke="#4c74ff"
+                opacity="0.7"
+                style={{ animation: "floatY 8s ease-in-out infinite alternate" }}
+              />
+              <path
+                d="M 520 30 L 525 35 L 520 40 L 515 35 Z"
+                fill="#2547f4"
+                opacity="0.5"
+                style={{ animation: "floatY 9s ease-in-out 1s infinite alternate" }}
+              />
+              <circle
+                r="3"
+                fill="#eaf1ff"
+                style={{
+                  offsetPath: "path('M 130 74 L 326 74')",
+                  animation: "pulseTravel 3.8s linear 0.6s infinite",
+                }}
+              />
+              <circle
+                r="3"
+                fill="#eaf1ff"
+                style={{
+                  offsetPath: "path('M 434 74 L 584 74')",
+                  animation: "pulseTravel 3.8s linear 2.4s infinite",
+                }}
+              />
+            </svg>
+          </div>
         </div>
       </div>
 
@@ -152,7 +393,16 @@ export default function DocsPage() {
                 id="quickstart"
                 style={{ display: "flex", flexDirection: "column", gap: 16, scrollMarginTop: 130 }}
               >
-                <h2 style={h2Style}>Quickstart</h2>
+                <h2 style={h2Style}>
+                  <span
+                    style={{
+                      ...barBase,
+                      animation: "barIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.4s both",
+                    }}
+                  >
+                    Quickstart
+                  </span>
+                </h2>
                 <p style={bodyStyle}>
                   Weights are on Hugging Face under Apache 2.0. Any OpenAI-compatible server that
                   loads safetensors will serve it; below is the plain{" "}
@@ -197,7 +447,18 @@ export default function DocsPage() {
                   scrollMarginTop: 130,
                 }}
               >
-                <h2 style={h2Style}>Tool calling</h2>
+                <h2 style={h2Style}>
+                  Tool{" "}
+                  <span
+                    data-dc-ch=""
+                    style={{
+                      ...barBase,
+                      animation: "barIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.25s both",
+                    }}
+                  >
+                    calling
+                  </span>
+                </h2>
                 <p style={bodyStyle}>
                   Neptune emits Hermes-native tool calls — structured JSON in{" "}
                   <span style={monoInline}>{"<tool_call>"}</span> tags, no wrapper prompts. Declare
@@ -230,7 +491,17 @@ export default function DocsPage() {
                   scrollMarginTop: 130,
                 }}
               >
-                <h2 style={h2Style}>Resources</h2>
+                <h2 style={h2Style}>
+                  <span
+                    data-dc-ch=""
+                    style={{
+                      ...barBase,
+                      animation: "barIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.25s both",
+                    }}
+                  >
+                    Resources
+                  </span>
+                </h2>
                 <a
                   href="https://huggingface.co/ainfera"
                   target="_blank"

@@ -13,8 +13,10 @@ const MENUS: Menu[] = [
     key: "models",
     label: "Models",
     items: [
-      { label: "Neptune 27B", href: "/models#neptune-27b" },
-      { label: "Neptune 9B", href: "/models#neptune-9b" },
+      { label: "Neptune 27B", href: "/models/neptune-27b" },
+      { label: "Neptune 9B", href: "/models/neptune-9b" },
+      { label: "Neptune 70B Finance", href: "/models/neptune-70b" },
+      { label: "Neptune MoE", href: "/models/neptune-moe" },
     ],
   },
   {
@@ -27,7 +29,7 @@ const MENUS: Menu[] = [
     label: "Research",
     items: [
       { label: "Philosophy", href: "/blog/inside-the-eval-gate" },
-      { label: "Whitepaper ↗", href: "https://huggingface.co/ainfera", external: true },
+      { label: "Whitepaper", href: "/whitepaper" },
     ],
   },
   {
@@ -76,7 +78,7 @@ export default function Nav({
             letterSpacing: "0.14em",
           }}
         >
-          NEPTUNE-1.0-27B-AGENT IS LIVE ON HUGGING FACE&nbsp;&nbsp;→
+          NEPTUNE-1.0-27B-AGENT IS IN TRAINING — FOLLOW THE RUN ON HUGGING FACE&nbsp;&nbsp;→
         </a>
       )}
       <div
@@ -216,18 +218,34 @@ export default function Nav({
           })}
         </nav>
         <a
-          className="btn-cta"
+          className="btn-ghost"
           href="https://huggingface.co/ainfera"
           target="_blank"
           rel="noreferrer"
           style={{
             flex: "none",
+            display: "flex",
+            alignItems: "center",
+            gap: 14,
             font: "500 10.5px 'IBM Plex Mono', monospace",
             letterSpacing: "0.12em",
-            padding: "10px 18px",
+            padding: "9px 16px",
           }}
         >
-          DOWNLOAD 27B&nbsp;↗
+          <img
+            src="https://cdn.simpleicons.org/huggingface/a9c7ff"
+            alt="Hugging Face"
+            style={{ width: 15, height: 15, display: "block" }}
+          />
+          <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <span style={{ color: "#a9c7ff" }}>2.4K</span>
+            <span style={{ color: "#98a3bd" }}>FOLLOWERS</span>
+          </span>
+          <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <span style={{ color: "#a9c7ff" }}>318</span>
+            <span style={{ color: "#98a3bd" }}>LIKES</span>
+          </span>
+          <span style={{ color: "#a9c7ff" }}>↗</span>
         </a>
       </div>
     </div>

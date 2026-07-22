@@ -134,11 +134,17 @@ export default function Footer() {
 
           <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
             <span style={colHead}>MODELS</span>
-            <Link className="lnk-body" href="/models#neptune-27b" style={colLink}>
+            <Link className="lnk-body" href="/models/neptune-27b" style={colLink}>
               Neptune 27B
             </Link>
-            <Link className="lnk-body" href="/models#neptune-9b" style={colLink}>
+            <Link className="lnk-body" href="/models/neptune-9b" style={colLink}>
               Neptune 9B
+            </Link>
+            <Link className="lnk-body" href="/models/neptune-70b" style={colLink}>
+              Neptune 70B Finance
+            </Link>
+            <Link className="lnk-body" href="/models/neptune-moe" style={colLink}>
+              Neptune MoE
             </Link>
             <Link className="lnk-body" href="/docs" style={colLink}>
               Docs
@@ -157,15 +163,9 @@ export default function Footer() {
             <Link className="lnk-body" href="/blog/inside-the-eval-gate" style={colLink}>
               Philosophy
             </Link>
-            <a
-              className="lnk-body"
-              href="https://huggingface.co/ainfera"
-              target="_blank"
-              rel="noreferrer"
-              style={colLink}
-            >
-              Whitepaper&nbsp;↗
-            </a>
+            <Link className="lnk-body" href="/whitepaper" style={colLink}>
+              Whitepaper
+            </Link>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
@@ -277,14 +277,54 @@ export default function Footer() {
               PRIVACY
             </a>
           </span>
+          <span style={{ display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}>
+            <span
+              style={{
+                font: "400 10px 'IBM Plex Mono', monospace",
+                letterSpacing: "0.2em",
+                color: "#2a3954",
+              }}
+            >
+              MODELS THAT PROVE THEMSELVES.
+            </span>
+            <span
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 7,
+                font: "400 10px 'IBM Plex Mono', monospace",
+                letterSpacing: "0.14em",
+                color: "#a9c7ff",
+              }}
+            >
+              <span
+                style={{
+                  width: 5,
+                  height: 5,
+                  background: "#a9c7ff",
+                  animation: "blinkDot 2.6s ease-in-out infinite",
+                }}
+              />
+              FACTORY LIVE · GRPO
+            </span>
+          </span>
+        </div>
+
+        <div
+          aria-hidden="true"
+          style={{ overflow: "hidden", display: "flex", justifyContent: "center", paddingTop: 28 }}
+        >
           <span
             style={{
-              font: "400 10px 'IBM Plex Mono', monospace",
-              letterSpacing: "0.2em",
-              color: "#2a3954",
+              font: "500 clamp(110px, 22vw, 320px)/0.78 'Poppins', sans-serif",
+              letterSpacing: "-0.045em",
+              color: "rgba(169,199,255,0.05)",
+              whiteSpace: "nowrap",
+              marginBottom: "-0.14em",
+              userSelect: "none",
             }}
           >
-            MODELS THAT PROVE THEMSELVES.
+            ainfera
           </span>
         </div>
       </div>
