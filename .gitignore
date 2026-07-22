@@ -20,3 +20,7 @@ coverage/
 *.log
 .idea/
 .vscode/
+
+# Local agent/editor hook configs (machine-specific paths)
+.codex/
+.cursor/

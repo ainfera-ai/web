@@ -29,22 +29,35 @@ This is **not** a routing marketplace product site and not a general SaaS pitch.
 web/
 ├── README.md
 ├── public/
-│   └── brand/ainfera-mark-ice.svg
-├── src/             # Site source (framework TBD / in progress)
+│   └── brand/ainfera-mark-ice.svg   # favicon + nav/footer mark
+├── src/
+│   ├── app/                         # Next.js App Router pages
+│   │   ├── page.tsx                 # /            home
+│   │   ├── models/                  # /models      the Neptune family
+│   │   ├── docs/                    # /docs        quickstart + tool calling
+│   │   ├── blog/                    # /blog        notes from the line
+│   │   │   └── inside-the-eval-gate/  # /blog/inside-the-eval-gate
+│   │   ├── about/                   # /about
+│   │   ├── contact/                 # /contact
+│   │   └── coming-soon/             # /coming-soon standalone teaser
+│   └── components/                  # Nav, Footer, Reveal, HeroOrbit, …
 └── docs/            # Content briefs, IA notes
 ```
 
+The pages are a 1:1 port of the `neptune/` design references in the
+**Ainfera v2.0** Claude Design project (blueprint aesthetic: `#060b16`
+canvas, dashed hairline rails, Poppins + IBM Plex Mono, square corners).
+
 ## Development
 
-Scaffold only today. When the stack is chosen (static site or app framework), document:
+Next.js (App Router, TypeScript). All routes prerender statically.
 
 ```bash
-# install
-# dev server
-# production build
+npm install     # install
+npm run dev     # dev server → http://localhost:3000
+npm run build   # production build
+npm run start   # serve the production build
 ```
-
-in this README and keep deploy steps reproducible.
 
 ## Related repositories
 
