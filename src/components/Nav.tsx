@@ -1,43 +1,46 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import HuggingFaceLogo from "./HuggingFaceLogo";
 
-export type NavKey = "none" | "models" | "enterprise" | "research" | "factory";
+export type NavKey = "none" | "models" | "company" | "research";
 
-type MenuItem = { label: string; href: string; external?: boolean };
-type Menu = { key: Exclude<NavKey, "none">; label: string; items: MenuItem[] };
+type MenuItem = { label: string; href: string; external?: boolean; status?: string };
+type Menu = {
+  key: Exclude<NavKey, "none">;
+  label: string;
+  href: string;
+  external?: boolean;
+  items: MenuItem[];
+};
 
 const MENUS: Menu[] = [
   {
     key: "models",
     label: "Models",
+    href: "https://huggingface.co/ainfera-ai/Neptune-1.0-27B",
+    external: true,
     items: [
-      { label: "Neptune 27B", href: "/models/neptune-27b" },
-      { label: "Neptune 9B", href: "/models/neptune-9b" },
-      { label: "Neptune 70B Finance", href: "/models/neptune-70b" },
-      { label: "Neptune MoE", href: "/models/neptune-moe" },
+      { label: "Neptune 27B", href: "https://huggingface.co/ainfera-ai/Neptune-1.0-27B", external: true, status: "In training" },
     ],
   },
   {
-    key: "enterprise",
-    label: "Enterprise",
-    items: [{ label: "Work with us!", href: "/contact" }],
+    key: "company",
+    label: "Company",
+    href: "/about",
+    items: [
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" },
+    ],
   },
   {
     key: "research",
     label: "Research",
+    href: "/philosophy",
     items: [
-      { label: "Philosophy", href: "/blog/inside-the-eval-gate" },
+      { label: "Philosophy", href: "/philosophy" },
       { label: "Whitepaper", href: "/whitepaper" },
-    ],
-  },
-  {
-    key: "factory",
-    label: "Factory",
-    items: [
-      { label: "About", href: "/about" },
-      { label: "Blog", href: "/blog" },
     ],
   },
 ];
@@ -50,197 +53,195 @@ export default function Nav({
   banner?: boolean;
 }) {
   const [open, setOpen] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+
+  useEffect(() => {
+    const hero =
+      document.querySelector<HTMLElement>("[data-nav-hero]") ??
+      document.querySelector<HTMLElement>(".home-hero") ??
+      document.querySelector<HTMLElement>("main > header, main > section");
+
+    if (!hero) {
+      setPastHero(true);
+      return;
+    }
+
+    const updateSurface = () => {
+      setPastHero(hero.getBoundingClientRect().bottom <= 67);
+    };
+
+    updateSurface();
+    window.addEventListener("scroll", updateSurface, { passive: true });
+    window.addEventListener("resize", updateSurface);
+
+    return () => {
+      window.removeEventListener("scroll", updateSurface);
+      window.removeEventListener("resize", updateSurface);
+    };
+  }, []);
+
+  const closeMenus = () => {
+    setOpen(null);
+    setMobileOpen(false);
+  };
 
   return (
-    <div
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-        background: "#060b16",
-        fontFamily: "'Poppins', sans-serif",
-      }}
-    >
+    <>
       {banner && (
         <a
-          className="nav-banner"
-          href="https://huggingface.co/ainfera-ai"
+          className="site-nav__banner"
+          href="https://huggingface.co/ainfera-ai/Neptune-1.0-27B"
           target="_blank"
           rel="noreferrer"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 10,
-            padding: "9px 20px",
-            borderBottom: "1px dashed rgba(169,199,255,0.25)",
-            font: "400 10.5px 'IBM Plex Mono', monospace",
-            letterSpacing: "0.14em",
-          }}
         >
-          NEPTUNE-1.0-27B-AGENT IS IN TRAINING — FOLLOW THE RUN ON HUGGING FACE&nbsp;&nbsp;→
+          <span>Neptune 27B is in training</span>
         </a>
       )}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 24,
-          padding: "8px clamp(20px, 4vw, 40px)",
-          minHeight: 64,
-          boxSizing: "border-box",
-          flexWrap: "wrap",
-          borderBottom: "1px dashed rgba(169,199,255,0.25)",
-          background: "rgba(6,11,22,0.92)",
-          backdropFilter: "blur(8px)",
-        }}
-      >
-        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12, flex: "none" }}>
-          <img
-            src="/brand/ainfera-mark-ice.svg"
-            alt="Ainfera"
-            style={{ width: 27, height: 27, display: "block" }}
-          />
-          <span
-            style={{
-              font: "500 17px 'Poppins', sans-serif",
-              letterSpacing: "-0.015em",
-              color: "#eaf1ff",
-            }}
-          >
-            ainfera
-          </span>
+
+      <header className="site-nav" data-past-hero={pastHero ? "true" : "false"}>
+      <div className="site-nav__inner">
+        <Link href="/" className="site-nav__brand" onClick={closeMenus}>
+          <img src="/brand/ainfera-mark-ice.svg" alt="" width="28" height="28" />
+          <span>ainfera</span>
         </Link>
-        <nav
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "clamp(16px, 2.2vw, 30px)",
-            flexWrap: "wrap",
-          }}
-        >
-          {MENUS.map((m) => {
-            const isOpen = open === m.key;
-            const isActive = active === m.key;
+
+        <nav className="site-nav__desktop" aria-label="Primary navigation">
+          {MENUS.map((menu) => {
+            const isOpen = open === menu.key;
+            const isActive = active === menu.key;
+
             return (
               <div
-                key={m.key}
-                style={{ position: "relative", display: "flex" }}
-                onMouseEnter={() => setOpen(m.key)}
-                onMouseLeave={() => setOpen((o) => (o === m.key ? null : o))}
+                className="site-nav__group"
+                data-menu={menu.key}
+                key={menu.key}
+                onMouseEnter={() => setOpen(menu.key)}
+                onMouseLeave={() => setOpen((value) => (value === menu.key ? null : value))}
               >
-                <button
-                  onClick={() => setOpen((o) => (o === m.key ? null : m.key))}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 7,
-                    background: "none",
-                    border: "none",
-                    borderRadius: 0,
-                    padding: "4px 0",
-                    cursor: "pointer",
-                    font: "400 13px 'Poppins', sans-serif",
-                    color: isActive || isOpen ? "#eaf1ff" : "#98a3bd",
-                    borderBottom: isActive ? "1px dashed #a9c7ff" : "1px dashed transparent",
-                  }}
-                >
-                  {m.label}
-                  <span
-                    style={{
-                      fontSize: 7.5,
-                      color: isOpen ? "#a9c7ff" : "#5a6478",
-                      transform: "translateY(1px)",
-                    }}
+                {menu.external ? (
+                  <a
+                    className="site-nav__trigger"
+                    href={menu.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    data-active={isActive || isOpen ? "true" : "false"}
+                    aria-expanded={isOpen}
+                    onFocus={() => setOpen(menu.key)}
+                    onClick={closeMenus}
                   >
-                    ▾
-                  </span>
-                </button>
+                    {menu.label}
+                    <span aria-hidden="true">⌄</span>
+                  </a>
+                ) : (
+                  <Link
+                    className="site-nav__trigger"
+                    href={menu.href}
+                    data-active={isActive || isOpen ? "true" : "false"}
+                    aria-expanded={isOpen}
+                    onFocus={() => setOpen(menu.key)}
+                    onClick={closeMenus}
+                  >
+                    {menu.label}
+                    <span aria-hidden="true">⌄</span>
+                  </Link>
+                )}
+
                 {isOpen && (
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "100%",
-                      left: -18,
-                      paddingTop: 12,
-                      zIndex: 60,
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        minWidth: 196,
-                        background: "rgba(7,13,26,0.97)",
-                        border: "1px dashed rgba(169,199,255,0.3)",
-                        backdropFilter: "blur(10px)",
-                        animation: "navDrop 0.26s cubic-bezier(0.16,1,0.3,1) both",
-                      }}
-                    >
-                      {m.items.map((i, idx) => {
-                        const itemStyle: React.CSSProperties = {
-                          padding: "12px 18px",
-                          font: "400 13px 'Poppins', sans-serif",
-                          borderBottom:
-                            idx < m.items.length - 1
-                              ? "1px dashed rgba(169,199,255,0.12)"
-                              : "none",
-                        };
-                        return i.external ? (
-                          <a
-                            key={i.label}
-                            className="dd-item"
-                            href={i.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            style={itemStyle}
-                          >
-                            {i.label}
-                          </a>
-                        ) : (
-                          <Link
-                            key={i.label}
-                            className="dd-item"
-                            href={i.href}
-                            style={itemStyle}
-                            onClick={() => setOpen(null)}
-                          >
-                            {i.label}
-                          </Link>
-                        );
-                      })}
-                    </div>
+                  <div className="site-nav__dropdown">
+                    {menu.items.map((item) =>
+                      item.external ? (
+                        <a
+                          key={item.label}
+                          href={item.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={closeMenus}
+                        >
+                          <span>{item.label}</span>
+                          {item.status && <span className="site-nav__status">{item.status}</span>}
+                        </a>
+                      ) : (
+                        <Link key={item.label} href={item.href} onClick={closeMenus}>
+                          <span>{item.label}</span>
+                          {item.status && <span className="site-nav__status">{item.status}</span>}
+                        </Link>
+                      )
+                    )}
                   </div>
                 )}
               </div>
             );
           })}
         </nav>
+
         <a
-          className="btn-ghost"
+          className="site-nav__hf-status"
           href="https://huggingface.co/ainfera-ai"
           target="_blank"
           rel="noreferrer"
-          style={{
-            flex: "none",
-            display: "flex",
-            alignItems: "center",
-            gap: 14,
-            font: "500 10.5px 'IBM Plex Mono', monospace",
-            letterSpacing: "0.12em",
-            padding: "9px 16px",
-          }}
+          aria-label="Ainfera on Hugging Face; public model cards are not yet available"
         >
-          <img
-            src="https://cdn.simpleicons.org/huggingface/a9c7ff"
-            alt="Hugging Face"
-            style={{ width: 15, height: 15, display: "block" }}
-          />
-          <span style={{ color: "#eaf1ff" }}>FOLLOW ON HF</span>
-          <span style={{ color: "#a9c7ff" }}>↗</span>
+          <HuggingFaceLogo />
+          <span>Hugging Face</span>
+          <strong>Public cards N/A</strong>
         </a>
+
+        <button
+          className="site-nav__menu-button"
+          type="button"
+          aria-expanded={mobileOpen}
+          aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+          onClick={() => setMobileOpen((value) => !value)}
+        >
+          <span />
+          <span />
+        </button>
       </div>
-    </div>
+
+      {mobileOpen && (
+        <nav className="site-nav__mobile" aria-label="Mobile navigation">
+          {MENUS.map((menu) => (
+            <div data-menu={menu.key} key={menu.key}>
+              {menu.external ? (
+                <a
+                  className="site-nav__mobile-heading"
+                  href={menu.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={closeMenus}
+                >
+                  {menu.label}
+                </a>
+              ) : (
+                <Link className="site-nav__mobile-heading" href={menu.href} onClick={closeMenus}>
+                  {menu.label}
+                </Link>
+              )}
+              {menu.items.map((item) =>
+                item.external ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={closeMenus}
+                  >
+                    <span>{item.label}</span>
+                    {item.status && <span className="site-nav__status">{item.status}</span>}
+                  </a>
+                ) : (
+                  <Link key={item.label} href={item.href} onClick={closeMenus}>
+                    <span>{item.label}</span>
+                    {item.status && <span className="site-nav__status">{item.status}</span>}
+                  </Link>
+                )
+              )}
+            </div>
+          ))}
+        </nav>
+      )}
+      </header>
+    </>
   );
 }

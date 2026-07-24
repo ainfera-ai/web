@@ -18,7 +18,7 @@ export default function NotifyForm() {
           padding: "14px 20px",
         }}
       >
-        NOTED — YOU&apos;LL HEAR AT RELEASE.
+        NOTED. YOU&apos;LL HEAR AT RELEASE.
       </span>
     );
   }

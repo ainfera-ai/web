@@ -1,15 +1,21 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ainfera.ai"),
   title: {
-    default: "Ainfera — models that prove themselves",
-    template: "%s — Ainfera",
+    default: "Ainfera - models that prove themselves",
+    template: "%s - Ainfera",
   },
   description:
-    "Ainfera builds the Neptune model family and the factory that trains it. Every release is gated by evals and recorded in a signed audit log — competence demonstrated, not claimed.",
+    "Ainfera builds open-weight Neptune models for private agent systems, with tool use, long-horizon execution, recovery, and evaluation records that keep evidence attached.",
   icons: { icon: "/brand/ainfera-mark-ice.svg" },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#060b16",
 };
 
 export default function RootLayout({
@@ -17,7 +23,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="static-site">
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {children}

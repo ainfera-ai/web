@@ -2,24 +2,19 @@
 
 import { useState } from "react";
 
-const labelStyle: React.CSSProperties = {
-  font: "400 10px 'IBM Plex Mono', monospace",
-  letterSpacing: "0.18em",
-  color: "#98a3bd",
-};
-
 const VERTICALS = [
-  ["finance", "FINANCE"],
-  ["crypto", "CRYPTO"],
-  ["accounting-tax", "ACCOUNTING/TAX"],
-  ["cybersecurity", "CYBERSECURITY"],
-  ["legal", "LEGAL"],
-  ["insurance", "INSURANCE"],
-  ["other", "OTHER"],
+  ["finance", "Finance"],
+  ["crypto", "Crypto"],
+  ["accounting-tax", "Accounting / tax"],
+  ["cybersecurity", "Cybersecurity"],
+  ["legal", "Legal"],
+  ["insurance", "Insurance"],
+  ["other", "Other"],
 ] as const;
 
 export default function ContactForm() {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [vertical, setVertical] = useState("finance");
   const [message, setMessage] = useState("");
@@ -27,102 +22,58 @@ export default function ContactForm() {
 
   if (sent) {
     return (
-      <div
-        style={{
-          border: "1px dashed rgba(169,199,255,0.35)",
-          padding: 28,
-          display: "flex",
-          flexDirection: "column",
-          gap: 10,
-          alignItems: "flex-start",
-        }}
-      >
-        <span
-          style={{
-            font: "500 12px 'IBM Plex Mono', monospace",
-            letterSpacing: "0.16em",
-            color: "#a9c7ff",
-          }}
-        >
-          INQUIRY LOGGED.
-        </span>
-        <span style={{ font: "400 13.5px/1.65 'Poppins', sans-serif", color: "#98a3bd" }}>
-          You&apos;ll hear back from the founder — there is no sales team to route through.
-        </span>
+      <div className="form-confirmation" role="status">
+        <span className="eyebrow">Inquiry received</span>
+        <h3>Thank you. We will review the workload context.</h3>
+        <p>A member of the Ainfera team will respond directly.</p>
       </div>
     );
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-      <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <span style={labelStyle}>NAME</span>
+    <form className="contact-form" onSubmit={(event) => { event.preventDefault(); setSent(true); }}>
+      <label>
+        <span>Name</span>
+        <input name="name" value={name} onChange={(event) => setName(event.target.value)} placeholder="Full name" required />
+      </label>
+      <label>
+        <span>Work email</span>
         <input
-          className="field"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full name"
-          style={{ font: "400 13px 'Poppins', sans-serif", padding: "13px 16px" }}
+          name="email"
+          type="email"
+          inputMode="email"
+          autoComplete="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          placeholder="you@company.com"
+          required
         />
       </label>
-      <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <span style={labelStyle}>COMPANY</span>
-        <input
-          className="field"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-          placeholder="Company"
-          style={{ font: "400 13px 'Poppins', sans-serif", padding: "13px 16px" }}
-        />
+      <label>
+        <span>Company</span>
+        <input name="company" value={company} onChange={(event) => setCompany(event.target.value)} placeholder="Company" required />
       </label>
-      <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <span style={labelStyle}>VERTICAL</span>
-        <select
-          className="field"
-          value={vertical}
-          onChange={(e) => setVertical(e.target.value)}
-          style={{
-            appearance: "none",
-            font: "400 12px 'IBM Plex Mono', monospace",
-            letterSpacing: "0.08em",
-            padding: "13px 16px",
-            cursor: "pointer",
-          }}
-        >
-          {VERTICALS.map(([value, label]) => (
-            <option key={value} value={value} style={{ background: "#060b16" }}>
-              {label}
-            </option>
-          ))}
+      <label>
+        <span>Vertical</span>
+        <select name="vertical" value={vertical} onChange={(event) => setVertical(event.target.value)}>
+          {VERTICALS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
         </select>
       </label>
-      <label style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <span style={labelStyle}>MESSAGE</span>
+      <label>
+        <span>Message</span>
         <textarea
-          className="field"
+          name="message"
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          rows={5}
-          placeholder="What will the agents do, and what would proof look like for you?"
-          style={{
-            font: "400 13px/1.6 'Poppins', sans-serif",
-            padding: "13px 16px",
-            resize: "vertical",
-          }}
+          onChange={(event) => setMessage(event.target.value)}
+          rows={6}
+          placeholder="What must the agent complete, where will it run, and what result would count as proof?"
+          required
         />
       </label>
-      <button
-        className="btn-cta"
-        onClick={() => setSent(true)}
-        style={{
-          alignSelf: "flex-start",
-          font: "500 11.5px 'IBM Plex Mono', monospace",
-          letterSpacing: "0.1em",
-          padding: "16px 26px",
-        }}
-      >
-        SUBMIT INQUIRY&nbsp;→
-      </button>
-    </div>
+      <div className="contact-form__footer">
+        <p>By submitting, you agree that Ainfera may use this information to respond to your inquiry.</p>
+        <button className="button button--primary" type="submit">Submit inquiry</button>
+      </div>
+    </form>
   );
 }

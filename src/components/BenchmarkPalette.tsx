@@ -1,178 +1,98 @@
-"use client";
+import Link from "next/link";
 
-import { useState } from "react";
+type BenchmarkPaletteProps = {
+  model?: "Neptune 27B";
+  compact?: boolean;
+};
 
-type Row = [name: string, val: number, disp: string, hero: boolean];
-type Tab = { label: string; note: string; unit: string; max: number; rows: Row[] };
+const MEASURES = [
+  { code: "AFR", label: "Agent finish rate", scope: "Complete task episodes", result: "N/A" },
+  { code: "TJV", label: "Tool JSON validity", scope: "Schema-valid calls and arguments", result: "N/A" },
+  { code: "RAF", label: "Recovery after failure", scope: "Repair after rejected or malformed calls", result: "N/A" },
+  { code: "THR", label: "Thrash ratio", scope: "Repeated or unnecessary action loops", result: "N/A" },
+  { code: "VAC", label: "VAC per cost and time", scope: "Value-adjusted completion by envelope", result: "N/A" },
+] as const;
 
-const DATA: Tab[] = [
-  {
-    label: "AGENTIC BENCHMARKS",
-    note: "COMPOSITE SCORE · HIGHER IS BETTER",
-    unit: "SCALE 0–100 · SAMPLE",
-    max: 75,
-    rows: [
-      ["NEPTUNE-1.0-27B-AGENT", 68.4, "68.4", true],
-      ["OPEN 27–34B MEDIAN", 55.1, "55.1", false],
-      ["OPEN 70B MEDIAN", 61.8, "61.8", false],
-      ["PROPRIETARY SMALL TIER", 64.2, "64.2", false],
-    ],
-  },
-  {
-    label: "TOOL-CALLING ACCURACY",
-    note: "HERMES SUITE · STRICT SCHEMA MATCH · HIGHER IS BETTER",
-    unit: "% · SAMPLE",
-    max: 100,
-    rows: [
-      ["NEPTUNE-1.0-27B-AGENT", 91.2, "91.2%", true],
-      ["OPEN 27–34B MEDIAN", 78.5, "78.5%", false],
-      ["OPEN 70B MEDIAN", 84.0, "84.0%", false],
-      ["PROPRIETARY SMALL TIER", 88.1, "88.1%", false],
-    ],
-  },
-  {
-    label: "COST PER TOKEN",
-    note: "SELF-HOSTED OUTPUT COST · LOWER IS BETTER",
-    unit: "$ / 1M TOKENS · SAMPLE",
-    max: 1.2,
-    rows: [
-      ["NEPTUNE-1.0-27B-AGENT", 0.31, "$0.31", true],
-      ["OPEN 27–34B MEDIAN", 0.42, "$0.42", false],
-      ["OPEN 70B MEDIAN", 0.89, "$0.89", false],
-      ["PROPRIETARY SMALL TIER", 1.1, "$1.10", false],
-    ],
-  },
-  {
-    label: "CLASS COMPARISON",
-    note: "AGENTIC COMPOSITE BY SIZE CLASS · HIGHER IS BETTER",
-    unit: "SCALE 0–100 · SAMPLE",
-    max: 75,
-    rows: [
-      ["NEPTUNE-1.0-27B-AGENT", 68.4, "68.4", true],
-      ["13–14B CLASS MEDIAN", 48.9, "48.9", false],
-      ["27–34B CLASS MEDIAN", 55.1, "55.1", false],
-      ["70B CLASS MEDIAN", 61.8, "61.8", false],
-    ],
-  },
-];
+const CONDITIONS = [
+  ["01", "Model", "Exact revision"],
+  ["02", "Suite", "Named workload"],
+  ["03", "Runtime", "Host and format"],
+  ["04", "Date", "Observed window"],
+  ["05", "Result", "Observed or N/A"],
+] as const;
 
-export default function BenchmarkPalette() {
-  const [tab, setTab] = useState(0);
-  const cur = DATA[tab];
+export default function BenchmarkPalette({ model = "Neptune 27B", compact = false }: BenchmarkPaletteProps) {
+  const rows = compact ? MEASURES.slice(0, 4) : MEASURES;
 
   return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          borderTop: "1px dashed rgba(169,199,255,0.12)",
-          borderBottom: "1px dashed rgba(169,199,255,0.12)",
-        }}
-      >
-        {DATA.map((d, i) => (
-          <button
-            key={d.label}
-            onClick={() => setTab(i)}
-            style={{
-              background: i === tab ? "#a9c7ff" : "transparent",
-              color: i === tab ? "#060b16" : "#98a3bd",
-              border: "none",
-              borderRight: "1px dashed rgba(169,199,255,0.12)",
-              borderRadius: 0,
-              font: "400 10.5px 'IBM Plex Mono', monospace",
-              letterSpacing: "0.14em",
-              padding: "15px 22px",
-              cursor: "pointer",
-            }}
-          >
-            {d.label}
-          </button>
-        ))}
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 18,
-          padding: "36px clamp(24px, 3.5vw, 48px)",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            gap: 12,
-            flexWrap: "wrap",
-            font: "400 10px 'IBM Plex Mono', monospace",
-            letterSpacing: "0.14em",
-            color: "#5a6478",
-          }}
-        >
-          <span>{cur.note}</span>
-          <span>{cur.unit}</span>
+    <section className={`benchmark-register${compact ? " benchmark-register--compact" : ""}`} aria-labelledby={`benchmark-title-${model.replace(/\s/g, "-")}`}>
+      <header className="benchmark-register__header">
+        <div>
+          <span className="eyebrow">Benchmark</span>
+          <h2 id={`benchmark-title-${model.replace(/\s/g, "-")}`}>No number without its conditions.</h2>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 14,
-            backgroundImage:
-              "repeating-linear-gradient(to right, rgba(169,199,255,0.08) 0 1px, transparent 1px 25%)",
-            backgroundSize: "100% 100%",
-          }}
-        >
-          {cur.rows.map(([name, val, disp, hero]) => (
-            <div key={name} style={{ display: "flex", flexDirection: "column", gap: 5 }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  gap: 12,
-                  font: "400 10px 'IBM Plex Mono', monospace",
-                  letterSpacing: "0.12em",
-                }}
-              >
-                <span style={{ color: hero ? "#eaf1ff" : "#5a6478" }}>{name}</span>
-                <span style={{ color: hero ? "#a9c7ff" : "#5a6478" }}>{disp}</span>
+        <p>
+          Public benchmark data for {model} is N/A. When results are available, every value will carry
+          the exact model, suite, runtime, date, and uncertainty needed to interpret it.
+        </p>
+      </header>
+
+      <div className="benchmark-register__sheet">
+        <div className="benchmark-register__mast">
+          <div>
+            <span>Evaluation register / {model}</span>
+            <small>Release field · values publish only with complete conditions</small>
+          </div>
+          <div className="benchmark-register__status">
+            <span>Public state</span>
+            <strong>N/A</strong>
+          </div>
+        </div>
+
+        <div className="benchmark-register__plot" aria-label={`${model} public benchmark result field`}>
+          <div className="benchmark-register__axis" aria-hidden="true">
+            <span>Measure / evaluation view</span>
+            <div>
+              <span>0</span>
+              <span>25</span>
+              <span>50</span>
+              <span>75</span>
+              <span>100</span>
+            </div>
+            <span>Public result</span>
+          </div>
+
+          {rows.map((measure, index) => (
+            <div className="benchmark-register__row" key={measure.label}>
+              <div className="benchmark-register__measure">
+                <span>{String(index + 1).padStart(2, "0")} / {measure.code}</span>
+                <strong>{measure.label}</strong>
+                <small>{measure.scope}</small>
               </div>
-              <div
-                style={{
-                  height: 22,
-                  border: "1px dashed rgba(169,199,255,0.15)",
-                  position: "relative",
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 2,
-                    bottom: 2,
-                    left: 2,
-                    width: Math.round((val / cur.max) * 100) + "%",
-                    background: hero ? "#a9c7ff" : "#2a3954",
-                    transition: "width 0.7s cubic-bezier(0.16,1,0.3,1)",
-                  }}
-                />
+              <div className="benchmark-register__track" aria-hidden="true">
+                <i /><i /><i /><i /><i />
+                <span>Awaiting observed value</span>
               </div>
+              <output aria-label={`${measure.label} public result`}>{measure.result}</output>
             </div>
           ))}
         </div>
-        <a
-          href="https://huggingface.co/ainfera-ai"
-          target="_blank"
-          rel="noreferrer"
-          style={{
-            alignSelf: "flex-start",
-            font: "400 10.5px 'IBM Plex Mono', monospace",
-            letterSpacing: "0.14em",
-            borderBottom: "1px dashed rgba(169,199,255,0.4)",
-            paddingBottom: 3,
-          }}
-        >
-          FULL EVALUATION REPORT&nbsp;↗
-        </a>
+
+        <div className="benchmark-register__condition-grid" aria-label="Required result conditions">
+          {CONDITIONS.map(([number, condition, detail]) => (
+            <div key={condition}>
+              <span>{number}</span>
+              <strong>{condition}</strong>
+              <small>{detail}</small>
+            </div>
+          ))}
+        </div>
+
+        <footer className="benchmark-register__footer">
+          <span>Targets, estimates, and unconditioned numbers stay outside the public result field.</span>
+          <Link href="/whitepaper">Read the evaluation method <span aria-hidden="true">↗</span></Link>
+        </footer>
       </div>
-    </>
+    </section>
   );
 }

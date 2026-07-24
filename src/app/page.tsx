@@ -4,20 +4,17 @@ import Footer from "@/components/Footer";
 import HomeContent from "./Content";
 
 export const metadata: Metadata = {
-  description: "Ainfera Neptune — models that prove themselves",
+  title: "Open-weight models built for agents",
+  description:
+    "Meet Neptune 27B, Ainfera's open-weight model for private agent systems. Explore its agentic design and benchmark fields, currently marked N/A.",
 };
 
 export default function Home() {
   return (
-    <div
-      style={
-        {
-          background: "#060b16",
-          fontFamily: "'Poppins', sans-serif",
-          "--ease": "cubic-bezier(0.16,1,0.3,1)",
-        } as React.CSSProperties
-      }
-    >
+    <div className="precision-site site-shell site-shell--home">
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <Nav active="none" />
       <HomeContent />
       <Footer />
