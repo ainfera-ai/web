@@ -10,7 +10,7 @@ Public website for **Ainfera** — the Neptune model lab site for [ainfera.ai](h
 
 Communicate the Neptune program cleanly:
 
-- Agent-native **Core** models: `Neptune-1.0-27B` and `Neptune-1.0-9B`
+- Agent-native **Core**: `Neptune-1.0-27B` + same-net quant SKUs (not 9B pre-fund)
 - Stage-0 factory discipline (evidence before claims)
 - Eval certificates and VAC/$ when gates pass
 
