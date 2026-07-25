@@ -6474,40 +6474,6 @@ body {
   }
 }
 
-/* Home release notice shares the hero's top plane instead of adding a row above it. */
-.site-shell--home {
-  position: relative;
-}
-
-.site-shell--home > .site-nav__banner {
-  position: absolute;
-  inset: 0 0 auto;
-}
-
-.site-shell--home > .site-nav {
-  top: 36px;
-}
-
-.site-shell--home .precision-home .home-hero__copy {
-  padding-top: calc(clamp(220px, 20vh, 280px) + 36px);
-}
-
-@media (max-width: 900px) {
-  .site-shell--home .precision-home .home-hero__copy {
-    padding-top: calc(clamp(146px, 20vh, 184px) + 36px);
-  }
-}
-
-@media (max-width: 640px) {
-  .site-shell--home > .site-nav {
-    top: 32px;
-  }
-
-  .site-shell--home .precision-home .home-hero__copy {
-    padding-top: calc(clamp(146px, 20vh, 184px) + 32px);
-  }
-}
-
 /* Documentation — institutional publication register */
 .docs-publication-page {
   --docs-copy: rgba(211, 219, 233, 0.68);
