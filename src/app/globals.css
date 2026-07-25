@@ -6474,6 +6474,41 @@ body {
   }
 }
 
+/* Keep the home notice on the hero plane without leaving a sticky offset
+ * after the notice scrolls away. The shell padding establishes the nav's
+ * initial position; the matching negative margin preserves the hero geometry. */
+.site-shell--home {
+  --home-banner-height: 36px;
+  position: relative;
+  padding-top: var(--home-banner-height);
+}
+
+.site-shell--home > .site-nav__banner {
+  position: absolute;
+  inset: 0 0 auto;
+}
+
+.site-shell--home > .site-nav {
+  top: 0;
+  margin-bottom: calc(-88px - var(--home-banner-height));
+}
+
+.site-shell--home .precision-home .home-hero__copy {
+  padding-top: calc(clamp(220px, 20vh, 280px) + var(--home-banner-height));
+}
+
+@media (max-width: 900px) {
+  .site-shell--home .precision-home .home-hero__copy {
+    padding-top: calc(clamp(146px, 20vh, 184px) + var(--home-banner-height));
+  }
+}
+
+@media (max-width: 640px) {
+  .site-shell--home {
+    --home-banner-height: 32px;
+  }
+}
+
 /* Documentation — institutional publication register */
 .docs-publication-page {
   --docs-copy: rgba(211, 219, 233, 0.68);
