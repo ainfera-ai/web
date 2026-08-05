@@ -3808,7 +3808,7 @@ body {
   text-wrap: pretty;
 }
 
-/* Dolomites hero: image and words preserved; composition made quieter. */
+/* Full-bleed hero media with restrained copy contrast. */
 
 .home-hero {
   min-height: 100svh;
@@ -7051,12 +7051,6 @@ body {
 .precision-home .home-hero--still .home-hero__media img {
   object-position: center;
   filter: saturate(0.72) contrast(1.07) brightness(0.78) hue-rotate(-3deg);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .precision-home .home-hero__video {
-    display: none;
-  }
 }
 
 /* Landing gateway — one dominant model path, two supporting entries. */

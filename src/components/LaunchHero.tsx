@@ -14,7 +14,7 @@ type LaunchHeroProps = {
 };
 
 export default function LaunchHero({
-  imageSrc = "/images/ainfera-dolomites-hero-v1.png",
+  imageSrc,
   imageAlt = "",
   showVideo = true,
   eyebrow,
@@ -40,16 +40,22 @@ export default function LaunchHero({
       data-nav-hero
       aria-labelledby="home-title"
     >
-      <div className="home-hero__media" aria-hidden={imageAlt ? undefined : "true"}>
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          fill
-          priority
-          quality={90}
-          sizes="100vw"
-        />
-        {showVideo ? <HeroVideo /> : null}
+      <div
+        className="home-hero__media"
+        aria-hidden={showVideo || !imageAlt ? "true" : undefined}
+      >
+        {showVideo ? (
+          <HeroVideo />
+        ) : imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            priority
+            quality={90}
+            sizes="100vw"
+          />
+        ) : null}
       </div>
       <div className="home-hero__veil" aria-hidden="true" />
       <div className="home-hero__copy">
