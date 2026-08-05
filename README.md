@@ -37,7 +37,8 @@ web/
 │   │   ├── docs/                    # /docs        quickstart + tool calling
 │   │   ├── blog/                    # /blog        notes from the line
 │   │   │   └── inside-the-eval-gate/  # /blog/inside-the-eval-gate
-│   │   ├── about/                   # /about
+│   │   ├── factory/                 # /factory
+│   │   ├── about/                   # legacy redirect to /factory
 │   │   ├── contact/                 # /contact
 │   │   └── coming-soon/             # /coming-soon standalone teaser
 │   └── components/                  # Nav, Footer, Reveal, HeroOrbit, …

@@ -108,14 +108,14 @@ export function AgentLedgerFigure() {
     >
       <title id="agent-ledger-title">Agent episode ledger</title>
       <desc id="agent-ledger-description">
-        A continuous episode register connecting tool use, persistent state, and recovery to one retained objective.
+        A design-target episode register connecting tool use, task state, and recovery to one retained objective.
       </desc>
 
       <g className="institutional-figure__meta">
         <text x="42" y="35">EPISODE LEDGER / ONE OBJECTIVE</text>
         <text x="938" y="35" textAnchor="end">ACTION → OBSERVATION → REPAIR</text>
         <text x="42" y="558">AGENT-NATIVE SYSTEM CONTRACT</text>
-        <text x="938" y="558" textAnchor="end">STATE REMAINS ATTACHED</text>
+        <text x="938" y="558" textAnchor="end">TARGET / TASK STATE REMAINS ATTACHED</text>
       </g>
 
       <g className="institutional-figure__rule-field institutional-figure__rule-field--episode">
@@ -142,7 +142,7 @@ export function AgentLedgerFigure() {
         <line x1="42" x2="938" y1="480" y2="480" />
         <line className="is-objective" x1="42" x2="938" y1="284" y2="284" />
         <text x="42" y="74">EPISODE 01 / CONTINUITY REGISTER</text>
-        <text x="938" y="74" textAnchor="end">FAILED PATHS REMAIN INSPECTABLE</text>
+        <text x="938" y="74" textAnchor="end">TARGET / FAILED PATHS REMAIN INSPECTABLE</text>
       </g>
 
       <g className="institutional-figure__sequence institutional-figure__sequence--ornn">
@@ -161,7 +161,7 @@ export function AgentLedgerFigure() {
         <circle cx="490" cy="284" r="5" />
         <circle cx="802" cy="284" r="5" />
         <path className="institutional-figure__sequence-spine" d="M178 284 H802" />
-        <text x="490" y="268" textAnchor="middle">OBJECTIVE RETAINED ACROSS THE FULL EPISODE</text>
+        <text x="490" y="268" textAnchor="middle">TARGET / OBJECTIVE RETAINED ACROSS THE FULL EPISODE</text>
       </g>
     </svg>
   );

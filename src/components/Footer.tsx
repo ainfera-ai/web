@@ -1,21 +1,23 @@
 import Link from "next/link";
 import HuggingFaceLogo from "./HuggingFaceLogo";
+import PreFooter from "./PreFooter";
 
 type FooterLink = { label: string; href?: string; external?: boolean };
 type FooterColumn = { heading: string; links: FooterLink[] };
 
 const footerColumns: FooterColumn[] = [
   {
-    heading: "Models",
+    heading: "Products",
     links: [
-      { label: "Neptune 27B", href: "https://huggingface.co/ainfera-ai/Neptune-1.0-27B", external: true },
-      { label: "Docs", href: "/docs" },
+      { label: "Neptune 27B", href: "/neptune-27b" },
+      { label: "Aeneas 9B", href: "/aeneas-9b" },
+      { label: "Neptune docs", href: "/docs" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "About", href: "/about" },
+      { label: "Factory", href: "/factory" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -40,6 +42,7 @@ const socialLinks = [
   { label: "Hugging Face", href: "https://huggingface.co/ainfera-ai", icon: "huggingface" },
   { label: "GitHub", href: "https://github.com/ainfera-ai", icon: "github" },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/ainfera/", icon: "linkedin" },
+  { label: "Instagram @ainfera_ai", href: "https://www.instagram.com/ainfera_ai/", icon: "instagram" },
 ] as const;
 
 function SocialMark({ name }: { name: (typeof socialLinks)[number]["icon"] }) {
@@ -63,6 +66,15 @@ function SocialMark({ name }: { name: (typeof socialLinks)[number]["icon"] }) {
     );
   }
 
+  if (name === "instagram") {
+    return (
+      <svg viewBox="0 0 448 512" aria-hidden="true">
+        {/* Font Awesome Free square-instagram, CC BY 4.0. */}
+        <path d="M194.4 211.7a53.3 53.3 0 1 0 59.2 88.6 53.3 53.3 0 1 0-59.2-88.6Zm142.3-68.4c-5.2-5.2-11.5-9.3-18.4-12-18.1-7.1-57.6-6.8-83.1-6.5-4.1 0-7.9.1-11.2.1s-7.2 0-11.4-.1c-25.5-.3-64.8-.7-82.9 6.5-6.9 2.7-13.1 6.8-18.4 12s-9.3 11.5-12 18.4c-7.1 18.1-6.7 57.7-6.5 83.2 0 4.1.1 7.9.1 11.1s0 7-.1 11.1c-.2 25.5-.6 65.1 6.5 83.2 2.7 6.9 6.8 13.1 12 18.4s11.5 9.3 18.4 12c18.1 7.1 57.6 6.8 83.1 6.5 4.1 0 7.9-.1 11.2-.1s7.2 0 11.4.1c25.5.3 64.8.7 82.9-6.5 6.9-2.7 13.1-6.8 18.4-12s9.3-11.5 12-18.4c7.2-18 6.8-57.4 6.5-83 0-4.2-.1-8.1-.1-11.4s0-7.1.1-11.4c.3-25.5.7-64.9-6.5-83-2.7-6.9-6.8-13.1-12-18.4l0 .2Zm-67.1 44.5c18.1 12.1 30.6 30.9 34.9 52.2s-.2 43.5-12.3 61.6c-6 9-13.7 16.6-22.6 22.6s-19 10.1-29.6 12.2c-21.3 4.2-43.5-.2-61.6-12.3s-30.6-30.9-34.9-52.2.2-43.5 12.2-61.6 30.9-30.6 52.2-34.9 43.5.2 61.6 12.2l.1 0Zm29.2-1.3c-3.1-2.1-5.6-5.1-7.1-8.6s-1.8-7.3-1.1-11.1 2.6-7.1 5.2-9.8 6.1-4.5 9.8-5.2 7.6-.4 11.1 1.1 6.5 3.9 8.6 7 3.2 6.8 3.2 10.6c0 2.5-.5 5-1.4 7.3s-2.4 4.4-4.1 6.2-3.9 3.2-6.2 4.2-4.8 1.5-7.3 1.5c-3.8 0-7.5-1.1-10.6-3.2l-.1 0ZM448 96c0-35.3-28.7-64-64-64L64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V96Zm-91 293c-18.7 18.7-41.4 24.6-67 25.9-26.4 1.5-105.6 1.5-132 0-25.6-1.3-48.3-7.2-67-25.9s-24.6-41.4-25.8-67c-1.5-26.4-1.5-105.6 0-132 1.3-25.6 7.1-48.3 25.8-67s41.5-24.6 67-25.8c26.4-1.5 105.6-1.5 132 0 25.6 1.3 48.3 7.1 67 25.8s24.6 41.4 25.8 67c1.5 26.3 1.5 105.4 0 131.9-1.3 25.6-7.1 48.3-25.8 67l0 .1Z" />
+      </svg>
+    );
+  }
+
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V8.98h3.41v1.57h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.29ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47Z" />
@@ -72,45 +84,55 @@ function SocialMark({ name }: { name: (typeof socialLinks)[number]["icon"] }) {
 
 export default function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="site-footer__inner">
-        <div className="site-footer__lead">
-          <Link className="site-footer__brand" href="/">
-            <img src="/brand/ainfera-mark-ice.svg" alt="" width="22" height="22" />
-            <span>ainfera</span>
-          </Link>
-          <p className="site-footer__tagline">The AI-native model factory</p>
+    <>
+      <PreFooter />
+      <footer className="site-footer">
+        <div className="site-footer__inner">
+          <div className="site-footer__lead">
+            <Link className="site-footer__brand" href="/">
+              <img src="/brand/ainfera-mark-ice.svg" alt="" width="22" height="22" />
+              <span>ainfera</span>
+            </Link>
+            <p className="site-footer__tagline">Models for agent systems. Evidence attached.</p>
+          </div>
+
+          <nav className="site-footer__nav" aria-label="Footer navigation">
+            {footerColumns.map((column) => (
+              <div key={column.heading}>
+                <span className="site-footer__heading">{column.heading}</span>
+                {column.links.map((link) => !link.href ? (
+                  <span className="site-footer__utility" key={link.label}>{link.label}</span>
+                ) : link.external ? (
+                  <a key={link.label} href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
+                ) : (
+                  <Link key={link.label} href={link.href}>{link.label}</Link>
+                ))}
+              </div>
+            ))}
+            <div className="site-footer__follow">
+              <span className="site-footer__heading">Follow</span>
+              <div className="site-footer__socials">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={link.label}
+                    title={link.label}
+                  >
+                    <SocialMark name={link.icon} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </nav>
         </div>
 
-        <nav className="site-footer__nav" aria-label="Footer navigation">
-          {footerColumns.map((column) => (
-            <div key={column.heading}>
-              <span className="site-footer__heading">{column.heading}</span>
-              {column.links.map((link) => !link.href ? (
-                <span className="site-footer__utility" key={link.label}>{link.label}</span>
-              ) : link.external ? (
-                <a key={link.label} href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
-              ) : (
-                <Link key={link.label} href={link.href}>{link.label}</Link>
-              ))}
-            </div>
-          ))}
-          <div className="site-footer__follow">
-            <span className="site-footer__heading">Follow</span>
-            <div className="site-footer__socials">
-              {socialLinks.map((link) => (
-                <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label} title={link.label}>
-                  <SocialMark name={link.icon} />
-                </a>
-              ))}
-            </div>
-          </div>
-        </nav>
-      </div>
-
-      <div className="site-footer__base">
-        <span>© 2026 Ainfera Inc.</span>
-      </div>
-    </footer>
+        <div className="site-footer__base">
+          <span>© 2026 Ainfera Inc.</span>
+        </div>
+      </footer>
+    </>
   );
 }

@@ -1,17 +1,26 @@
 import Link from "next/link";
 
 type BenchmarkPaletteProps = {
-  model?: "Neptune 27B";
+  model?: "Neptune 27B" | "Aeneas 9B";
   compact?: boolean;
 };
 
-const MEASURES = [
-  { code: "AFR", label: "Agent finish rate", scope: "Complete task episodes", result: "N/A" },
-  { code: "TJV", label: "Tool JSON validity", scope: "Schema-valid calls and arguments", result: "N/A" },
-  { code: "RAF", label: "Recovery after failure", scope: "Repair after rejected or malformed calls", result: "N/A" },
-  { code: "THR", label: "Thrash ratio", scope: "Repeated or unnecessary action loops", result: "N/A" },
-  { code: "VAC", label: "VAC per cost and time", scope: "Value-adjusted completion by envelope", result: "N/A" },
-] as const;
+const MEASURES = {
+  "Neptune 27B": [
+    { code: "AFR", label: "Agent finish rate", scope: "Complete task episodes", result: "N/A" },
+    { code: "TJV", label: "Tool JSON validity", scope: "Schema-valid calls and arguments", result: "N/A" },
+    { code: "RAF", label: "Recovery after failure", scope: "Repair after rejected or malformed calls", result: "N/A" },
+    { code: "THR", label: "Thrash ratio", scope: "Repeated or unnecessary action loops", result: "N/A" },
+    { code: "VAC", label: "VAC per cost and time", scope: "Value-adjusted completion by envelope", result: "N/A" },
+  ],
+  "Aeneas 9B": [
+    { code: "TCV", label: "Tool-choice validity", scope: "Required actions and admitted tools", result: "N/A" },
+    { code: "AJV", label: "Argument JSON validity", scope: "Schema-valid arguments and calls", result: "N/A" },
+    { code: "ABT", label: "Appropriate abstention", scope: "Explicit no-tool behavior when action is unwarranted", result: "N/A" },
+    { code: "CLR", label: "Clarification when required", scope: "Missing information requested before action", result: "N/A" },
+    { code: "RAF", label: "Recovery after failure", scope: "Repair after rejected or malformed calls", result: "N/A" },
+  ],
+} as const;
 
 const CONDITIONS = [
   ["01", "Model", "Exact revision"],
@@ -22,11 +31,12 @@ const CONDITIONS = [
 ] as const;
 
 export default function BenchmarkPalette({ model = "Neptune 27B", compact = false }: BenchmarkPaletteProps) {
-  const rows = compact ? MEASURES.slice(0, 4) : MEASURES;
+  const measures = MEASURES[model];
+  const rows = compact ? measures.slice(0, 4) : measures;
 
   return (
     <section className={`benchmark-register${compact ? " benchmark-register--compact" : ""}`} aria-labelledby={`benchmark-title-${model.replace(/\s/g, "-")}`}>
-      <header className="benchmark-register__header">
+      <header className="benchmark-register__header" data-reveal="on">
         <div>
           <span className="eyebrow">Benchmark</span>
           <h2 id={`benchmark-title-${model.replace(/\s/g, "-")}`}>No number without its conditions.</h2>
@@ -37,7 +47,7 @@ export default function BenchmarkPalette({ model = "Neptune 27B", compact = fals
         </p>
       </header>
 
-      <div className="benchmark-register__sheet">
+      <div className="benchmark-register__sheet" data-reveal="on">
         <div className="benchmark-register__mast">
           <div>
             <span>Evaluation register / {model}</span>

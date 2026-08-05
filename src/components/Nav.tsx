@@ -18,19 +18,19 @@ type Menu = {
 const MENUS: Menu[] = [
   {
     key: "models",
-    label: "Models",
-    href: "https://huggingface.co/ainfera-ai/Neptune-1.0-27B",
-    external: true,
+    label: "Products",
+    href: "/#products",
     items: [
-      { label: "Neptune 27B", href: "https://huggingface.co/ainfera-ai/Neptune-1.0-27B", external: true, status: "In training" },
+      { label: "Neptune 27B", href: "/neptune-27b", status: "In training" },
+      { label: "Aeneas 9B", href: "/aeneas-9b", status: "In training" },
     ],
   },
   {
     key: "company",
     label: "Company",
-    href: "/about",
+    href: "/factory",
     items: [
-      { label: "About", href: "/about" },
+      { label: "Factory", href: "/factory" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -67,18 +67,15 @@ export default function Nav({
       return;
     }
 
-    const updateSurface = () => {
-      setPastHero(hero.getBoundingClientRect().bottom <= 67);
-    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setPastHero(!entry.isIntersecting && entry.boundingClientRect.bottom <= 67);
+      },
+      { threshold: 0, rootMargin: "-67px 0px 0px 0px" },
+    );
 
-    updateSurface();
-    window.addEventListener("scroll", updateSurface, { passive: true });
-    window.addEventListener("resize", updateSurface);
-
-    return () => {
-      window.removeEventListener("scroll", updateSurface);
-      window.removeEventListener("resize", updateSurface);
-    };
+    observer.observe(hero);
+    return () => observer.disconnect();
   }, []);
 
   const closeMenus = () => {
@@ -89,14 +86,12 @@ export default function Nav({
   return (
     <>
       {banner && (
-        <a
+        <Link
           className="site-nav__banner"
-          href="https://huggingface.co/ainfera-ai/Neptune-1.0-27B"
-          target="_blank"
-          rel="noreferrer"
+          href="/#products"
         >
-          <span>Neptune 27B is in training</span>
-        </a>
+          <span>Neptune 27B and Aeneas 9B are in training</span>
+        </Link>
       )}
 
       <header className="site-nav" data-past-hero={pastHero ? "true" : "false"}>
@@ -180,11 +175,11 @@ export default function Nav({
           href="https://huggingface.co/ainfera-ai"
           target="_blank"
           rel="noreferrer"
-          aria-label="Ainfera on Hugging Face; public model cards are not yet available"
+          aria-label="Ainfera on Hugging Face; public benchmark results are not yet available"
         >
           <HuggingFaceLogo />
           <span>Hugging Face</span>
-          <strong>Public cards N/A</strong>
+          <strong>Results not yet available</strong>
         </a>
 
         <button

@@ -1,47 +1,38 @@
-import Image from "next/image";
-import Link from "next/link";
 import BenchmarkPalette from "@/components/BenchmarkPalette";
 import { AgentLedgerFigure, NeptuneIndexFigure } from "@/components/InstitutionalFigures";
+import LaunchHero from "@/components/LaunchHero";
 
 export default function HomeContent() {
   return (
     <main id="main-content" className="precision-main precision-home">
-      <section className="home-hero" aria-labelledby="home-title">
-        <div className="home-hero__media" aria-hidden="true">
-          <Image
-            src="/images/ainfera-dolomites-hero-v1.png"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-          />
-        </div>
-        <div className="home-hero__veil" aria-hidden="true" />
-        <div className="home-hero__copy">
-          <h1 id="home-title">The AI-native<br />model factory.</h1>
-          <p>
-            Ainfera is building Neptune 27B, an open-weight model for agentic systems. It is designed for native tool use, persistent state, long-horizon execution, and recovery.
-          </p>
-          <div className="button-row">
-            <Link className="button button--primary" href="/philosophy">Philosophy</Link>
-            <Link className="text-link" href="/whitepaper">Whitepaper <span aria-hidden="true">↗</span></Link>
-          </div>
-        </div>
-      </section>
+      <LaunchHero
+        imageSrc="/images/source-photos/neptune-norway-fjord-winter.jpg"
+        imageAlt="Snow-covered Ersfjord near Tromsø, Norway, after sunset"
+        showVideo={false}
+        eyebrow="Model program"
+        titleLines={["Neptune 27B"]}
+        description="A 27B-class model program designed for long-horizon private agent systems, with native tool use and recovery."
+        primaryAction={{
+          label: "View model record",
+          href: "https://huggingface.co/ainfera-ai/Neptune-1.0-27B",
+        }}
+        secondaryAction={{ label: "Read evaluation method", href: "/whitepaper" }}
+      />
 
       <section className="precision-section model-introduction" aria-labelledby="neptune-intro-title">
-        <header className="section-heading section-heading--split">
+        <header className="section-heading section-heading--split" data-reveal="on">
           <div>
             <span className="eyebrow">Neptune 27B</span>
             <h2 id="neptune-intro-title">The whole episode is the unit of work.</h2>
           </div>
           <p>
-            Neptune 27B is an open dense, approximately 27-billion-parameter model for agent systems.
-            Its product definition joins model identity, agent-native behavior, deployment intent, and an evaluation record.
+            Neptune 27B is an open dense model program in the approximately 27-billion-parameter
+            class. Its definition connects agent behavior, private deployment intent, and an
+            evaluation record with conditions attached.
           </p>
         </header>
 
-        <div className="model-introduction__composition">
+        <div className="model-introduction__composition" data-reveal="on" data-reveal-group="split">
           <div className="figure-stage figure-stage--large">
             <NeptuneIndexFigure />
           </div>
@@ -60,7 +51,7 @@ export default function HomeContent() {
               target="_blank"
               rel="noreferrer"
             >
-              Open the 27B model card <span aria-hidden="true">↗</span>
+              View Neptune on Hugging Face <span aria-hidden="true">↗</span>
             </a>
           </aside>
         </div>
@@ -69,17 +60,18 @@ export default function HomeContent() {
       <BenchmarkPalette />
 
       <section className="precision-section agent-section" aria-labelledby="agent-section-title">
-        <header className="section-heading section-heading--offset">
+        <header className="section-heading section-heading--offset" data-reveal="on">
           <div>
-            <span className="eyebrow">Agentic</span>
+            <span className="eyebrow">Design targets</span>
             <h2 id="agent-section-title">One objective across the episode.</h2>
           </div>
           <p>
-            A useful agent must keep intent, state, tool outputs, and recovery connected. Neptune treats the task as a continuous system, not a stack of isolated replies.
+            Neptune is being designed to keep intent, task state, tool outputs, and recovery
+            connected across a complete task episode.
           </p>
         </header>
 
-        <div className="agent-section__composition">
+        <div className="agent-section__composition" data-reveal="on" data-reveal-group="split">
           <div className="agent-section__canvas">
             <AgentLedgerFigure />
           </div>
@@ -88,21 +80,21 @@ export default function HomeContent() {
             <article className="agent-note agent-note--primary">
               <span className="agent-note__index">01 / protocol</span>
               <span className="eyebrow">Tool use</span>
-              <h3>Calls tools without translation.</h3>
-              <p>Prompts, schemas, arguments, observations, and results remain explicit across the exchange.</p>
+              <h3>Emit native tool calls.</h3>
+              <p>Keep schemas, arguments, observations, and results explicit across the exchange.</p>
             </article>
             <div className="agent-note-stack">
               <article className="agent-note">
                 <span className="agent-note__index">02 / state</span>
                 <span className="eyebrow">Continuity</span>
-                <h3>Keeps the objective alive.</h3>
-                <p>Plans and state transitions remain connected to the original task across multiple steps.</p>
+                <h3>Preserve task state.</h3>
+                <p>Keep plans and state transitions connected to the original objective across multiple steps.</p>
               </article>
               <article className="agent-note">
                 <span className="agent-note__index">03 / recovery</span>
                 <span className="eyebrow">Recovery</span>
-                <h3>Repairs inside the task.</h3>
-                <p>Rejected calls and failed paths stay inspectable, so the agent can correct and continue.</p>
+                <h3>Recover within the trace.</h3>
+                <p>Keep rejected calls and failed paths inspectable so the system can correct and continue.</p>
               </article>
             </div>
           </div>
@@ -113,8 +105,9 @@ export default function HomeContent() {
           href="https://huggingface.co/ainfera-ai/Neptune-1.0-27B"
           target="_blank"
           rel="noreferrer"
+          data-reveal="on"
         >
-          Open the Neptune 27B model card <span aria-hidden="true">↗</span>
+          View Neptune on Hugging Face <span aria-hidden="true">↗</span>
         </a>
       </section>
     </main>

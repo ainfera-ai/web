@@ -5244,6 +5244,37 @@ body {
   line-height: 1.75;
 }
 
+.institution-page-hero__media-panel {
+  position: relative;
+  grid-column: 1 / -1;
+  grid-row: 3;
+  align-self: stretch;
+  min-height: 310px;
+  margin: 0;
+  overflow: hidden;
+  border-top: 1px solid var(--institution-line-soft);
+  background: #070b12;
+}
+
+.institution-page-hero__media-panel img {
+  object-fit: cover;
+}
+
+.institution-page-hero__media-panel--factory img {
+  object-position: center;
+  filter: hue-rotate(178deg) saturate(0.68) contrast(1.12) brightness(0.72);
+}
+
+.institution-page-hero__media-panel::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(5, 8, 14, 0.26), transparent 42%),
+    linear-gradient(0deg, rgba(5, 8, 14, 0.42), transparent 58%);
+  content: "";
+  pointer-events: none;
+}
+
 .institution-page .text-link {
   display: inline-flex;
   align-items: center;
@@ -5836,6 +5867,11 @@ body {
     padding: 30px 0 52px;
     border-top: 1px solid var(--institution-line-soft);
     border-left: 0;
+  }
+
+  .institution-page-hero__media-panel {
+    grid-row: 4;
+    min-height: 340px;
   }
 
   .publication-meta {
@@ -6998,5 +7034,921 @@ body {
   .precision-site .site-footer__lead > .site-footer__tagline {
     margin-top: 16px;
     font-size: 15px;
+  }
+}
+
+/* Homepage launch film — clean Option Finale plate behind the original copy. */
+.precision-home .home-hero__video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.precision-home .home-hero--still .home-hero__media img {
+  object-position: center;
+  filter: saturate(0.72) contrast(1.07) brightness(0.78) hue-rotate(-3deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .precision-home .home-hero__video {
+    display: none;
+  }
+}
+
+/* Landing gateway — one dominant model path, two supporting entries. */
+.landing-gateway {
+  width: var(--rail);
+  margin: 0 auto;
+  padding: clamp(112px, 13vw, 196px) 0 clamp(132px, 15vw, 220px);
+}
+
+.landing-gateway__header {
+  margin-bottom: clamp(54px, 7vw, 96px);
+}
+
+.landing-gateway__index {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--line);
+  color: rgba(189, 200, 218, 0.56);
+  font: 500 10px/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: clamp(44px, 5vw, 72px);
+}
+
+.landing-gateway__header h2 {
+  max-width: 12.5ch;
+  margin: 0;
+  color: var(--paper);
+  font-size: clamp(48px, 5.7vw, 88px);
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.landing-gateway__header > p {
+  max-width: 520px;
+  margin: 28px 0 0;
+  color: rgba(190, 200, 216, 0.68);
+  font-size: 15px;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.landing-gateway__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: repeat(2, clamp(310px, 33vw, 530px));
+  gap: clamp(12px, 1.45vw, 24px);
+}
+
+.gateway-card {
+  --media-grade: saturate(0.9) contrast(1.06) brightness(0.9);
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--paper);
+  background: var(--ink-2);
+  isolation: isolate;
+}
+
+.gateway-card::after {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  border: 1px solid rgba(221, 231, 247, 0.13);
+  content: "";
+  pointer-events: none;
+}
+
+.gateway-card--neptune {
+  --media-grade: saturate(0.72) contrast(1.07) brightness(0.78) hue-rotate(-3deg);
+  grid-column: 1 / 8;
+  grid-row: 1 / 3;
+}
+
+.gateway-card--aeneas,
+.gateway-card--factory {
+  grid-column: 8 / 13;
+}
+
+.gateway-card--aeneas {
+  --media-grade: saturate(0.42) contrast(1.12) brightness(0.75) hue-rotate(5deg);
+  grid-row: 1;
+}
+
+.gateway-card--factory {
+  --media-grade: hue-rotate(178deg) saturate(0.68) contrast(1.12) brightness(0.92);
+  grid-row: 2;
+}
+
+.gateway-card img {
+  object-fit: cover;
+  object-position: center;
+  filter: var(--media-grade);
+  transform: scale(1.002);
+  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gateway-card--neptune img {
+  object-position: 50% center;
+}
+
+.gateway-card__veil {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(5, 8, 14, 0.34) 0%, transparent 36%),
+    linear-gradient(0deg, rgba(5, 8, 14, 0.96) 0%, rgba(5, 8, 14, 0.12) 62%),
+    radial-gradient(circle at 50% 42%, transparent 48%, rgba(5, 8, 14, 0.2) 100%);
+  transition: background 300ms ease;
+}
+
+.gateway-card__meta,
+.gateway-card__copy,
+.gateway-card__arrow {
+  position: absolute;
+  z-index: 2;
+}
+
+.gateway-card__meta {
+  inset: 24px 26px auto;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(235, 240, 249, 0.7);
+  font: 500 9px/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.gateway-card__copy {
+  right: 26px;
+  bottom: 27px;
+  left: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gateway-card__copy strong {
+  font-size: clamp(34px, 4.2vw, 70px);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.94;
+}
+
+.gateway-card--aeneas .gateway-card__copy strong,
+.gateway-card--factory .gateway-card__copy strong {
+  font-size: clamp(31px, 3vw, 51px);
+}
+
+.gateway-card__copy > span {
+  max-width: 440px;
+  color: rgba(229, 235, 246, 0.75);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.gateway-card__arrow {
+  right: 26px;
+  bottom: 27px;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(241, 244, 250, 0.32);
+  font-size: 16px;
+  transition: color 220ms ease, background 220ms ease, transform 220ms ease;
+}
+
+.gateway-card__copy + .gateway-card__arrow {
+  transform: translateY(-1px);
+}
+
+.gateway-card__copy {
+  padding-right: 68px;
+}
+
+.gateway-card:hover img,
+.gateway-card:focus-visible img {
+  transform: scale(1.025);
+}
+
+.gateway-card:hover .gateway-card__arrow,
+.gateway-card:focus-visible .gateway-card__arrow {
+  color: var(--ink);
+  background: var(--paper);
+  transform: translate(2px, -3px);
+}
+
+.gateway-card:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 4px;
+}
+
+/* Aeneas 9B — compact action-model program page. */
+.aeneas-hero {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  grid-template-columns: minmax(0, 1.6fr) minmax(320px, 0.4fr);
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+  background: var(--ink);
+  isolation: isolate;
+}
+
+.aeneas-hero__media,
+.aeneas-hero__veil {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+}
+
+.aeneas-hero__media img {
+  object-fit: cover;
+  object-position: 67% center;
+  filter: saturate(0.42) contrast(1.12) brightness(0.75) hue-rotate(5deg);
+}
+
+.factory-hero__media img {
+  object-position: center;
+  filter: hue-rotate(178deg) saturate(0.76) contrast(1.18) brightness(0.78);
+}
+
+.aeneas-hero__veil {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(5, 8, 14, 0.97) 0%, rgba(5, 8, 14, 0.68) 46%, rgba(5, 8, 14, 0.13) 79%),
+    linear-gradient(0deg, rgba(5, 8, 14, 0.92) 0%, transparent 45%);
+}
+
+.factory-hero__veil {
+  background:
+    radial-gradient(circle at 51% 45%, transparent 0 11%, rgba(5, 8, 14, 0.12) 24%, rgba(5, 8, 14, 0.48) 58%),
+    linear-gradient(90deg, rgba(5, 8, 14, 0.92) 0%, rgba(5, 8, 14, 0.52) 38%, rgba(5, 8, 14, 0.16) 66%, rgba(5, 8, 14, 0.58) 100%),
+    linear-gradient(0deg, rgba(5, 8, 14, 0.9) 0%, transparent 52%);
+}
+
+.aeneas-hero__index,
+.aeneas-hero__copy,
+.aeneas-hero__register {
+  position: relative;
+  z-index: 2;
+}
+
+.aeneas-hero__index {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  width: var(--rail);
+  margin: 0 auto;
+  padding-top: 132px;
+  color: rgba(214, 224, 241, 0.54);
+  font: 500 10px/1 var(--mono);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.aeneas-hero__copy {
+  align-self: end;
+  width: min(100% - 72px, 1030px);
+  margin-left: max(36px, calc((100vw - 1540px) / 2));
+  padding-bottom: clamp(76px, 10vh, 118px);
+}
+
+.aeneas-hero__copy h1 {
+  margin: 15px 0 22px;
+  color: var(--paper);
+  font-size: clamp(78px, 11vw, 176px);
+  font-weight: 400;
+  letter-spacing: -0.085em;
+  line-height: 0.82;
+}
+
+.aeneas-hero__copy p {
+  max-width: 620px;
+  margin: 0;
+  color: rgba(230, 237, 248, 0.76);
+  font-size: clamp(18px, 1.7vw, 25px);
+  line-height: 1.45;
+}
+
+.aeneas-hero__register {
+  align-self: end;
+  margin: 0 max(36px, calc((100vw - 1540px) / 2)) clamp(76px, 10vh, 118px) 0;
+  border-top: 1px solid rgba(232, 238, 249, 0.2);
+}
+
+.aeneas-hero__register > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(232, 238, 249, 0.11);
+}
+
+.aeneas-hero__register dt,
+.aeneas-hero__register dd {
+  margin: 0;
+  font: 500 9px/1.35 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aeneas-hero__register dt {
+  color: rgba(197, 208, 226, 0.52);
+}
+
+.aeneas-hero__register dd {
+  color: rgba(241, 244, 250, 0.84);
+  text-align: right;
+}
+
+.aeneas-chapter {
+  display: grid;
+  width: var(--rail);
+  grid-template-columns: minmax(120px, 0.22fr) minmax(0, 1fr);
+  gap: clamp(36px, 6vw, 100px);
+  margin: 0 auto;
+  padding: clamp(100px, 12vw, 180px) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.aeneas-chapter__label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: rgba(178, 190, 209, 0.5);
+  font: 500 10px/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.aeneas-chapter__body {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(380px, 1.1fr);
+  gap: clamp(50px, 7vw, 118px);
+}
+
+.aeneas-thesis h2 {
+  max-width: 720px;
+  margin: 0 0 30px;
+  color: var(--paper);
+  font-size: clamp(45px, 5vw, 76px);
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.96;
+  text-wrap: balance;
+}
+
+.aeneas-thesis p {
+  max-width: 650px;
+  margin: 0;
+  color: rgba(183, 195, 214, 0.7);
+  font-size: 15px;
+  line-height: 1.78;
+}
+
+.aeneas-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.aeneas-actions article {
+  min-height: 220px;
+  padding: 25px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.aeneas-actions article > span {
+  color: rgba(169, 199, 255, 0.6);
+  font: 500 9px/1 var(--mono);
+}
+
+.aeneas-actions h3 {
+  margin: 54px 0 13px;
+  color: var(--paper);
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.aeneas-actions p {
+  margin: 0;
+  color: rgba(178, 190, 209, 0.64);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.aeneas-state {
+  align-self: start;
+  padding: 30px 0 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.aeneas-state > span {
+  color: rgba(178, 190, 209, 0.5);
+  font: 500 9px/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.aeneas-state strong {
+  display: block;
+  margin: 28px 0 20px;
+  color: var(--ice);
+  font: 400 clamp(50px, 6vw, 90px)/0.9 var(--sans);
+  letter-spacing: -0.07em;
+}
+
+.aeneas-state p {
+  max-width: 520px;
+  margin: 0;
+  color: rgba(183, 195, 214, 0.66);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.aeneas-chapter__body--stacked {
+  grid-template-columns: 1fr;
+  gap: clamp(56px, 7vw, 96px);
+}
+
+.aeneas-evidence__composition {
+  display: grid;
+  min-height: 560px;
+  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.45fr);
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line);
+}
+
+.aeneas-evidence__composition .institution-figure-stage {
+  display: flex;
+  align-items: center;
+  border: 0;
+  background: transparent;
+}
+
+.aeneas-evidence__composition .aeneas-state {
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 44px 0 44px 42px;
+  border-top: 0;
+  border-left: 1px solid var(--line);
+}
+
+@media (max-width: 900px) {
+  .landing-gateway__header,
+  .aeneas-chapter__body {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-gateway__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(520px, 78vh) repeat(2, minmax(360px, 55vh));
+  }
+
+  .gateway-card--neptune,
+  .gateway-card--aeneas,
+  .gateway-card--factory {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .aeneas-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .aeneas-hero__copy {
+    width: var(--rail);
+    margin: 0 auto;
+    padding-bottom: 42px;
+  }
+
+  .aeneas-hero__register {
+    width: var(--rail);
+    margin: 0 auto 54px;
+  }
+
+  .aeneas-chapter {
+    grid-template-columns: 1fr;
+  }
+
+  .aeneas-evidence__composition {
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .aeneas-evidence__composition .aeneas-state {
+    padding: 36px 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .landing-gateway {
+    width: calc(100% - 24px);
+    padding-top: 88px;
+  }
+
+  .landing-gateway__header {
+    gap: 34px;
+  }
+
+  .landing-gateway__header h2 {
+    font-size: clamp(44px, 13vw, 66px);
+  }
+
+  .landing-gateway__grid {
+    grid-template-rows: 520px 390px 390px;
+  }
+
+  .gateway-card__meta {
+    inset: 18px 18px auto;
+  }
+
+  .gateway-card__copy {
+    right: 18px;
+    bottom: 20px;
+    left: 18px;
+  }
+
+  .gateway-card__arrow {
+    right: 18px;
+    bottom: 20px;
+  }
+
+  .aeneas-hero__index,
+  .aeneas-hero__copy,
+  .aeneas-hero__register,
+  .aeneas-chapter {
+    width: calc(100% - 24px);
+  }
+
+  .aeneas-hero__index {
+    padding-top: 112px;
+  }
+
+  .aeneas-hero__copy h1 {
+    font-size: clamp(72px, 23vw, 110px);
+  }
+
+  .aeneas-hero__register {
+    margin-bottom: 42px;
+  }
+
+  .aeneas-chapter {
+    padding: 90px 0;
+  }
+
+  .aeneas-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .aeneas-actions article {
+    min-height: 190px;
+  }
+
+  .aeneas-page .benchmark-register {
+    width: calc(100% - 24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gateway-card img,
+  .gateway-card__arrow {
+    transition: none;
+  }
+}
+
+/* Restrained portfolio motion. The site remains static by default; only
+ * compositor-safe opacity and transform effects are re-enabled here. */
+@keyframes ainfera-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes ainfera-media-settle {
+  from {
+    opacity: 0.86;
+    transform: scale(1.025);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ainfera-menu-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.motion-ready body.static-site [data-reveal="on"]:not([data-reveal-group]) {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    transition: opacity 720ms cubic-bezier(0.16, 1, 0.3, 1), transform 720ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  html.motion-ready body.static-site [data-reveal="on"][data-revealed="true"]:not([data-reveal-group]) {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  html.motion-ready body.static-site [data-reveal-group] > * {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    transition: opacity 680ms cubic-bezier(0.16, 1, 0.3, 1), transform 680ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  html.motion-ready body.static-site [data-reveal-group="split"] > :first-child {
+    transform: translate3d(-12px, 0, 0);
+  }
+
+  html.motion-ready body.static-site [data-reveal-group="split"] > :nth-child(2) {
+    transform: translate3d(12px, 0, 0);
+  }
+
+  html.motion-ready body.static-site [data-reveal-group][data-revealed="true"] > * {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  html.motion-ready body.static-site [data-reveal="on"]:not([data-reveal-group]):focus-visible,
+  html.motion-ready body.static-site [data-reveal="on"]:not([data-reveal-group]):focus-within,
+  html.motion-ready body.static-site [data-reveal-group]:focus-within > * {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition-duration: 0ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  html.motion-ready body.static-site [data-reveal-group] > :nth-child(2) {
+    transition-delay: 70ms !important;
+  }
+
+  html.motion-ready body.static-site [data-reveal-group] > :nth-child(3) {
+    transition-delay: 140ms !important;
+  }
+
+  html.motion-ready body.static-site [data-reveal-group] > :nth-child(4) {
+    transition-delay: 210ms !important;
+  }
+
+  html.motion-ready body.static-site .landing-gateway__grid > :nth-child(2) {
+    transition-delay: 90ms !important;
+  }
+
+  html.motion-ready body.static-site .landing-gateway__grid > :nth-child(3) {
+    transition-delay: 180ms !important;
+  }
+
+  body.static-site .home-hero__copy > .eyebrow {
+    animation: ainfera-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both !important;
+  }
+
+  body.static-site .home-hero__copy h1 {
+    animation: ainfera-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both !important;
+  }
+
+  body.static-site .home-hero__copy > p {
+    animation: ainfera-rise 720ms cubic-bezier(0.16, 1, 0.3, 1) 270ms both !important;
+  }
+
+  body.static-site .home-hero__copy .button-row {
+    animation: ainfera-rise 650ms cubic-bezier(0.16, 1, 0.3, 1) 390ms both !important;
+  }
+
+  body.static-site .home-hero--still .home-hero__media img {
+    animation: ainfera-media-settle 1450ms cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  }
+
+  body.static-site .aeneas-hero__media img {
+    animation: ainfera-media-settle 1500ms cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  }
+
+  body.static-site .aeneas-hero__index {
+    animation: ainfera-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both !important;
+  }
+
+  body.static-site .aeneas-hero__copy > .eyebrow {
+    animation: ainfera-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) 150ms both !important;
+  }
+
+  body.static-site .aeneas-hero__copy h1 {
+    animation: ainfera-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 210ms both !important;
+  }
+
+  body.static-site .aeneas-hero__copy p {
+    animation: ainfera-rise 720ms cubic-bezier(0.16, 1, 0.3, 1) 340ms both !important;
+  }
+
+  body.static-site .aeneas-hero__register > div {
+    animation: ainfera-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  }
+
+  body.static-site .aeneas-hero__register > div:nth-child(1) { animation-delay: 390ms !important; }
+  body.static-site .aeneas-hero__register > div:nth-child(2) { animation-delay: 450ms !important; }
+  body.static-site .aeneas-hero__register > div:nth-child(3) { animation-delay: 510ms !important; }
+  body.static-site .aeneas-hero__register > div:nth-child(4) { animation-delay: 570ms !important; }
+
+  body.static-site .site-nav__dropdown {
+    animation: ainfera-menu-in 180ms cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  }
+
+  body.static-site .site-nav__mobile {
+    animation: ainfera-menu-in 240ms cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  body.static-site .gateway-card img {
+    transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
+  body.static-site .gateway-card__copy,
+  body.static-site .gateway-card__arrow,
+  body.static-site .text-link::after,
+  body.static-site .founder-socials a {
+    transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  body.static-site .gateway-card:hover img,
+  body.static-site .gateway-card:focus-visible img {
+    transform: scale(1.018);
+  }
+
+  body.static-site .gateway-card:hover .gateway-card__copy,
+  body.static-site .gateway-card:focus-visible .gateway-card__copy {
+    transform: translate3d(0, -3px, 0);
+  }
+
+  body.static-site .text-link::after {
+    transform: scaleX(0.65);
+    transform-origin: left center;
+  }
+
+  body.static-site .text-link:hover::after,
+  body.static-site .text-link:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  body.static-site .founder-socials a:hover,
+  body.static-site .founder-socials a:focus-visible {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+@media (max-width: 640px) and (prefers-reduced-motion: no-preference) {
+  body.static-site .home-hero--still .home-hero__media img,
+  body.static-site .aeneas-hero__media img {
+    animation: none !important;
+  }
+}
+
+@media print {
+  body.static-site [data-reveal="on"],
+  body.static-site [data-reveal-group] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Pre-footer model field. The Continuity Loop is drawn as a closed character
+ * path; the client leaf handles motion without shifting layout. */
+.continuity-field {
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(620px, 62vw, 820px);
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.continuity-field__visual,
+.continuity-field__veil {
+  position: absolute;
+  inset: 0;
+}
+
+.continuity-field__visual {
+  z-index: 0;
+  pointer-events: none;
+}
+
+.continuity-field__visual canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.continuity-field__veil {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(5, 8, 14, 0.98) 0%, rgba(5, 8, 14, 0.88) 30%, rgba(5, 8, 14, 0.34) 57%, rgba(5, 8, 14, 0.08) 82%),
+    linear-gradient(180deg, rgba(5, 8, 14, 0.08) 64%, var(--ink) 100%);
+  pointer-events: none;
+}
+
+.continuity-field__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: var(--rail);
+  min-height: inherit;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 96px 0;
+}
+
+.continuity-field__content h2 {
+  max-width: 780px;
+  margin: 0;
+  color: rgba(248, 250, 255, 0.96);
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.continuity-field__cta {
+  min-width: 112px;
+  margin-top: 36px;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .continuity-field {
+    min-height: 700px;
+  }
+
+  .continuity-field__veil {
+    background:
+      linear-gradient(90deg, rgba(5, 8, 14, 0.96) 0%, rgba(5, 8, 14, 0.78) 46%, rgba(5, 8, 14, 0.18) 100%),
+      linear-gradient(180deg, rgba(5, 8, 14, 0.04) 55%, var(--ink) 100%);
+  }
+
+  .continuity-field__content h2 {
+    max-width: 560px;
+    font-size: clamp(46px, 9vw, 68px);
+  }
+}
+
+@media (max-width: 640px) {
+  .continuity-field {
+    min-height: 660px;
+  }
+
+  .continuity-field__veil {
+    background:
+      linear-gradient(90deg, rgba(5, 8, 14, 0.92) 0%, rgba(5, 8, 14, 0.62) 70%, rgba(5, 8, 14, 0.28) 100%),
+      linear-gradient(180deg, rgba(5, 8, 14, 0.04) 34%, rgba(5, 8, 14, 0.82) 69%, var(--ink) 100%);
+  }
+
+  .continuity-field__content {
+    justify-content: flex-end;
+    padding: 250px 0 72px;
+  }
+
+  .continuity-field__content h2 {
+    max-width: 12ch;
+    font-size: clamp(42px, 13vw, 58px);
+    line-height: 1;
+  }
+
+  .continuity-field__cta {
+    margin-top: 30px;
   }
 }

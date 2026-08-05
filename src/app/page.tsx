@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import HomeContent from "./Content";
+import LandingContent from "./LandingContent";
 
 export const metadata: Metadata = {
-  title: "Open-weight models built for agents",
+  title: "Neptune, Aeneas, and Factory",
   description:
-    "Meet Neptune 27B, Ainfera's open-weight model for private agent systems. Explore its agentic design and benchmark fields, currently marked N/A.",
+    "Explore Ainfera's three products: Neptune 27B, Aeneas 9B, and Factory, the lifecycle system connecting model definition, evaluation, and release evidence.",
 };
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
         Skip to content
       </a>
       <Nav active="none" />
-      <HomeContent />
+      <LandingContent />
       <Footer />
     </div>
   );
