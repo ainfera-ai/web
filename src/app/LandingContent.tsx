@@ -10,8 +10,8 @@ const pathways = [
     description: "A 27B-class program for long-horizon private agent systems, planned for open-weight release.",
     status: "In training",
     href: "/neptune-27b",
-    image: "/images/source-photos/neptune-norway-fjord-winter.jpg",
-    alt: "Snow-covered Ersfjord near Tromsø, Norway, after sunset",
+    image: "/images/studiotune-builder-demo.png",
+    alt: "StudioTune Desktop beta builder showing a model, dataset, goal, and next action in the experiment workspace",
   },
   {
     key: "aeneas",
