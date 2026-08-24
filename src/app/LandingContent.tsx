@@ -4,12 +4,12 @@ import LaunchHero from "@/components/LaunchHero";
 
 const pathways = [
   {
-    key: "neptune",
-    category: "Model program",
-    title: "Neptune 27B",
-    description: "A 27B-class program for long-horizon private agent systems, planned for open-weight release.",
-    status: "In training",
-    href: "/neptune-27b",
+    key: "studiotune",
+    category: "Public product",
+    title: "StudioTune",
+    description: "A beta platform for shaping model behavior with a visible proof trail.",
+    status: "Beta release",
+    href: "https://studiotune.ai",
     image: "/images/studiotune-builder-demo.png",
     alt: "StudioTune Desktop beta builder showing a model, dataset, goal, and next action in the experiment workspace",
   },
@@ -46,11 +46,11 @@ export default function LandingContent() {
             <span>Ainfera</span>
             <span>Product register / 2026</span>
           </div>
-          <h2 id="gateway-title">Two model programs. One lifecycle system.</h2>
+          <h2 id="gateway-title">One public product. One model track. One method.</h2>
           <p>
-            Neptune targets long-horizon agent work. Aeneas targets native tool use within explicit
-            policy boundaries. Factory connects model definition, interface, evaluation conditions,
-            and release evidence.
+            StudioTune is the public beta product for shaping model behavior. Mercury is a separate
+            iPhone-fit model track derived from Qwen3.8-27B. It is in training; device, quality, and
+            release validation remain pending.
           </p>
         </header>
 
@@ -66,7 +66,7 @@ export default function LandingContent() {
                 alt={pathway.alt}
                 fill
                 quality={90}
-                sizes={pathway.key === "neptune" ? "(max-width: 900px) 100vw, 58vw" : "(max-width: 900px) 100vw, 38vw"}
+                sizes={pathway.key === "studiotune" ? "(max-width: 900px) 100vw, 58vw" : "(max-width: 900px) 100vw, 38vw"}
               />
               <span className="gateway-card__veil" aria-hidden="true" />
               <span className="gateway-card__meta">
