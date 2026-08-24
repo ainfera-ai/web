@@ -10,7 +10,7 @@ const pathways = [
     description: "A beta platform for shaping model behavior with a visible proof trail.",
     status: "Beta release",
     href: "https://studiotune.ai",
-    image: "/images/studiotune-builder-demo.png",
+    image: "/images/studiotune-desktop-app-demo.png",
     alt: "StudioTune Desktop beta builder showing a model, dataset, goal, and next action in the experiment workspace",
   },
   {
@@ -66,6 +66,7 @@ export default function LandingContent() {
                 alt={pathway.alt}
                 fill
                 quality={90}
+                unoptimized={pathway.key === "studiotune"}
                 sizes={pathway.key === "studiotune" ? "(max-width: 900px) 100vw, 58vw" : "(max-width: 900px) 100vw, 38vw"}
               />
               <span className="gateway-card__veil" aria-hidden="true" />
