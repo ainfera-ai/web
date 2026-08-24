@@ -10,7 +10,7 @@ const pathways = [
     description: "A beta platform for shaping model behavior with a visible proof trail.",
     status: "Beta release",
     href: "https://studiotune.ai",
-    image: "/images/studiotune-desktop-app-demo.png",
+    image: "/images/studiotune-builder-demo.png",
     alt: "StudioTune Desktop beta builder showing a model, dataset, goal, and next action in the experiment workspace",
   },
   {
